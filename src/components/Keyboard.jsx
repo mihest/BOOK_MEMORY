@@ -166,7 +166,7 @@ const Keyboard = () => {
     };
 
     return (
-        <div className="flex flex-col w-[1920px] h-[944px] bg-[#FCEFD6] rounded-[16px] p-[40px] gap-[40px]" style={{
+        <div className="flex flex-col w-[1920px] h-[944px] bg-[#FCEFD6] rounded-[16px] p-[40px] gap-[40px] font-[Roboto-Slab]" style={{
             boxShadow: "0px 0px 32px 0px rgba(35, 1, 9, 0.25)"
         }}>
             <div className="flex relative items-center">
