@@ -1,1 +1,11 @@
 @import "tailwindcss";
+body{
+    width: 3844px;
+    height: 2160px;
+}
+
+@font-face {
+    font-family: 'Roboto-Slab';
+    src: local('Roboto'), url('./fonts/RobotoSlab-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+}
