@@ -1,9 +1,14 @@
 import Kb from "../components/Keyboard"
+import {useState} from "react";
 
 const Keyboard = () => {
+    const [isOpen, setIsOpen] = useState(true);
+
     return (
         <div className="">
-            <Kb />
+            {isOpen && (
+                <Kb setIsOpen={setIsOpen}/>
+            )}
         </div>
     )
 }

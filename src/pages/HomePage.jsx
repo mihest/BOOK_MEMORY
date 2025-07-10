@@ -1,4 +1,4 @@
-const IndexPage = () => {
+const HomePage = () => {
 
     return (
         <div className="bg-[url(/main.jpg)] h-[2160px] w-[3844px]">
@@ -12,4 +12,4 @@ const IndexPage = () => {
     );
 };
 
-export default IndexPage;
+export default HomePage;
