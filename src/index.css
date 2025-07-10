@@ -5,9 +5,11 @@ body{
     display: flex;
     flex-direction: column;
 }
-#root{
-    flex: 1;
+
+#root {
     display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 @font-face {
@@ -20,4 +22,35 @@ body{
     font-family: 'Roboto-Serif-Italic';
     src: local('Roboto-Serif-Italic'), url('./fonts/RobotoSerif-Italic-VariableFont_GRAD,opsz,wdth,wght.ttf') format('truetype');
     font-style: normal;
+}
+
+/* Стили для вертикального скроллбара (hero-content) */
+*::-webkit-scrollbar {
+    width: 32px; /* Ширина скроллбара */
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent; /* Фон дорожки скроллбара */
+    border-radius: 24px; /* Скругление краёв */
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #E8DBC2; /* Цвет ползунка */
+    border-radius: 24px; /* Скругление ползунка */
+    border: 2px solid #E8DBC2; /* Отступ от краёв для эффекта */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #E60036; /* Цвет при наведении */
+}
+
+/* Стили для горизонтального скроллбара (архив) */
+*::-webkit-scrollbar {
+    height: 32px; /* Высота горизонтального скроллбара */
+}
+
+/* Fallback для Firefox */
+* {
+    scrollbar-width: auto; /* Тонкий скроллбар */
+    scrollbar-color: #E8DBC2 transparent; /* Цвет ползунка и фона */
 }
