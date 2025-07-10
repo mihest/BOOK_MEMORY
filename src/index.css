@@ -35,10 +35,6 @@ body{
     border: 2px solid #E8DBC2; /* Отступ от краёв для эффекта */
 }
 
-*::-webkit-scrollbar-thumb:hover {
-    background: #E60036; /* Цвет при наведении */
-}
-
 /* Стили для горизонтального скроллбара (архив) */
 *::-webkit-scrollbar {
     height: 32px; /* Высота горизонтального скроллбара */
