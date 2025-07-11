@@ -1,5 +1,4 @@
 import clear from '../assets/clear.svg';
-import close from '../assets/close.svg';
 import planet from '../assets/planet.svg';
 import backspace from '../assets/backspace.svg';
 import shift from '../assets/shift.svg';
@@ -197,7 +196,7 @@ const KeyboardComponent = ({ setIsOpen }) => {
                 ))}
             </div>
             <div className="flex w-[176px] h-[112px] mx-auto bg-[#FFF9E0] rounded-[48px] cursor-pointer" onClick={handleHideKeyboard}>
-                <img src={close} alt="Скрыть клавиатуру" className="w-[48px] h-[48px] m-auto" />
+                <img src="/close.svg" alt="Скрыть клавиатуру" className="w-[48px] h-[48px] m-auto" />
             </div>
         </div>
     );
