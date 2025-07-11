@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, useParams} from 'react-router-dom';
+import HeroCardComponent from "../components/HeroCardComponent.jsx";
 const peopleData = [
     {
         id: 1,
@@ -76,8 +77,8 @@ const SearchPage = () => {
 
     return (
         <div className="flex-1 flex bg-[#FFF9E0] p-[80px]">
-            <div className="bg-[#FCEFD6] w-full h-full flex flex-col overflow-hidden rounded-[128px]">
-                <div className="flex px-[80px] mt-[80px]">
+            <div className="bg-[#FCEFD6] w-full h-full flex flex-col overflow-hidden rounded-[128px] py-[80px] relative">
+                <div className="flex px-[80px]">
                     <Link
                         className="bg-[#80011F] rounded-[48px] w-[144px] h-[144px] flex items-center justify-center"
                         to="/book">
@@ -85,33 +86,26 @@ const SearchPage = () => {
                     </Link>
                     <div className="flex flex-col w-full ml-[40px]">
                         <span
-                            className="font-[Roboto-Slab] text-[80px]/[100%] font-[700] text-[#80011F] bg-gradient-to-r from-[#E60036] to-[#80011F] text-transparent bg-clip-text">{text.title}</span>
+                            className="font-[Roboto-Slab] text-[80px]/[100%] font-[700] text-[#80011F] bg-gradient-to-r from-[#E60036] to-[#80011F] bg-clip-text">{text.title}</span>
                         <span
                             className="font-[Roboto-Slab] text-[40px]/[100%] font-[400] text-black mt-[20px]">{text.description}</span>
                     </div>
 
-                    <button
-                    className="bg-[#80011F] w-[582px] h-[144px] flex items-center justify-center gap-[20px] uppercase rounded-[48px]">
+                    <button className="bg-[#80011F] w-[582px] h-[144px] flex items-center justify-center gap-[20px] uppercase rounded-[48px]">
                         <img src="/lupa.svg" alt="lupa_ico"/>
                         <span className="font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-white tracking-[12%]">Найти героя</span>
                     </button>
 
                 </div>
-                <div className="flex w-full h-[1746px] overflow-y-auto overflow-x-hidden pl-[80px] pr-[35px] mt-[30px]">
-                    <div className="flex w-full flex-col-4 flex-wrap gap-[21px]">
-                        {peopleData.map((person) => (
-                            <div key={person.id} className="w-[865px] h-[1225px] bg-[#FFF9E0] rounded-[80px] shadow-md overflow-hidden items-center flex flex-col font-[Montserat]">
-                                <img src={person.imageUrl} alt={person.name} className="w-[833px] h-[833px] object-cover rounded-[64px] mt-[20px]" />
-                                <div className="p-[35px] flex flex-col">
-                                    <span className="text-[48px]/[100%] font-[700] mt-[5px] mb-2">{person.name}</span>
-                                    <span className="text-[#9F9196] text-[28px]/[100%] font-[500] my-[25px]">{person.city}</span>
-                                    <span className="text-[#464444] text-[32px]/[100%] font-[500] mb-4">{person.position}</span>
-                                    <span className="text-[#464444] text-[32px]/[100%] font-[500] mb-2">{person.birthDate} - {person.deathDate}</span>
-                                </div>
-                            </div>
+                <div className="flex flex-col w-full h-[1746px] overflow-y-auto overflow-x-hidden px-[80px] mt-[30px]">
+                    <div className="grid w-full grid-cols-4 gap-[20px]">
+                        {peopleData.map((hero) => (
+                            <HeroCardComponent key={hero.id} hero={hero} />
                         ))}
                     </div>
                 </div>
+
+                <div className="absolute bottom-[80px] left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#FCEFD6] pointer-events-none z-[99]" />
             </div>
         </div>
     );

@@ -115,7 +115,7 @@ const HeroCardPage = () => {
 
     return (
         <div className="bg-[#FDF6DE] p-[80px] flex-1 flex relative">
-            <div className="bg-[#FCEFD6] flex-1 rounded-[128px] py-[80px]">
+            <div className="bg-[#FCEFD6] relative flex-1 rounded-[128px] py-[80px]">
                 <div className="overflow-auto px-[80px] h-[2000px]">
                     {loading ? <Loader /> : (
                         <>
@@ -187,39 +187,40 @@ const HeroCardPage = () => {
                                     ))}
                                 </div>
                             </div>
-                            {currentPhotoIndex !== null && (
-                                <div key={hero.archive[currentPhotoIndex].id} className="absolute inset-0 bg-black/80 flex items-center justify-center z-[1000]">
-                                    <div className="flex flex-col justify-center items-center gap-[80px]">
-                                        <img
-                                            src={hero.archive[currentPhotoIndex].url}
-                                            alt="archive"
-                                            className="max-w-[3157px] h-[1776px] object-cover rounded-[16px]"
-                                        />
-                                        <button
-                                            onClick={closeModal}
-                                            className="w-[330px] h-[144px] bg-[#80011F] rounded-[48px] flex items-center justify-center"
-                                        >
-                                            <img src="/closeWhite.svg" alt="close" className="w-[64px] h-[64px]" />
-                                        </button>
-                                        <button
-                                            onClick={goToPrevious}
-                                            className="absolute left-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
-                                        >
-                                            <img src="/arrowWhite.svg" alt="Previous" className="w-[64px] h-[64px]" />
-                                        </button>
-                                        <button
-                                            onClick={goToNext}
-                                            className="absolute right-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
-                                        >
-                                            <img src="/arrowWhite.svg" alt="Next" className="w-[64px] h-[64px] rotate-180" />
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
                         </>
                     )}
                 </div>
+                <div className="absolute bottom-[80px] left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#FCEFD6] pointer-events-none z-99" />
             </div>
+            {currentPhotoIndex !== null && (
+                <div key={hero.archive[currentPhotoIndex].id} className="absolute inset-0 bg-black/80 flex items-center justify-center z-[1000]">
+                    <div className="flex flex-col justify-center items-center gap-[80px]">
+                        <img
+                            src={hero.archive[currentPhotoIndex].url}
+                            alt="archive"
+                            className="max-w-[3157px] h-[1776px] object-cover rounded-[16px]"
+                        />
+                        <button
+                            onClick={closeModal}
+                            className="w-[330px] h-[144px] bg-[#80011F] rounded-[48px] flex items-center justify-center"
+                        >
+                            <img src="/closeWhite.svg" alt="close" className="w-[64px] h-[64px]" />
+                        </button>
+                        <button
+                            onClick={goToPrevious}
+                            className="absolute left-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
+                        >
+                            <img src="/arrowWhite.svg" alt="Previous" className="w-[64px] h-[64px]" />
+                        </button>
+                        <button
+                            onClick={goToNext}
+                            className="absolute right-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
+                        >
+                            <img src="/arrowWhite.svg" alt="Next" className="w-[64px] h-[64px] rotate-180" />
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 };
