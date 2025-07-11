@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
 import Loader from "../components/Loader.jsx";
 
@@ -63,6 +63,7 @@ const HeroCardPage = () => {
     const [loading, setLoading] = useState(true);
     const archiveRef = useRef(null);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchHero = async () => {
@@ -113,6 +114,14 @@ const HeroCardPage = () => {
         );
     };
 
+    const handleClickNavigate = () => {
+        if (window.history.length > 1) {
+            navigate(-1);
+        } else {
+            navigate('/');
+        }
+    };
+
     return (
         <div className="bg-[#FDF6DE] p-[80px] flex-1 flex relative">
             <div className="bg-[#FCEFD6] relative flex-1 rounded-[128px] py-[80px]">
@@ -120,9 +129,9 @@ const HeroCardPage = () => {
                     {loading ? <Loader /> : (
                         <>
                             <div className="flex items-center gap-x-[40px]">
-                                <Link to="/" className="w-[144px] h-[144px] rounded-[48px] flex items-center justify-center bg-[#80011F]">
+                                <button onClick={handleClickNavigate} className="w-[144px] h-[144px] rounded-[48px] flex items-center justify-center cursor-pointer bg-[#80011F]">
                                     <img src="/back.svg" alt="Back" />
-                                </Link>
+                                </button>
                                 <span className="bg-gradient-to-b from-[#E60036] to-[#80011F] text-transparent bg-clip-text text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Личная информация</span>
                             </div>
                             <div className="pt-[42px] border-t-[2px] border-[#8B8785] my-[40px]">
@@ -131,7 +140,7 @@ const HeroCardPage = () => {
                                     <div className="flex flex-col gap-[67px] w-[1380px]">
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{hero.full_name}</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{!hero.date_death ? hero.date_birth : `${hero.date_birth}-${hero.date_death}`}</span>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{!hero.date_death ? hero.date_birth : `${hero.date_birth} - ${hero.date_death}`}</span>
                                         </div>
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Место рождения</h3>

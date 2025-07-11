@@ -5,12 +5,12 @@ const BookPage = () => {
     return (
         <div className="flex-1 flex">
             <div className="bg-[#FDF5DD] w-[2020px] h-full flex flex-col overflow-hidden">
-                <div className="flex flex-col p-[80px]">
+                <div className="flex flex-col p-[80px] z-99">
                     <span
                         className="font-[Roboto-Slab] text-[160px]/[100%] font-[900] bg-gradient-to-r from-[#E60036] to-[#80011F] text-transparent bg-clip-text">КНИГА <br/> ПАМЯТИ</span>
                     <span className="font-[Roboto-Slab] text-[32px]/[100%] font-[400] text-black w-[580px] mt-[30px]">— это святая сокровищница, бережно хранящая судьбы тех, чьи имена навечно вписаны золотыми буквами в историю нашей Родины</span>
                 </div>
-                <div className="flex flex-col p-[80px] items-end text-right">
+                <div className="flex flex-col p-[80px] items-end text-right z-99">
                     <img className="w-[48px] h-[48px]" src="/69.png" alt="69_Ico"/>
                     <span className="font-[Roboto-Slab] text-[32px]/[100%] font-[400] text-black w-[580px] mt-[30px]">Открыв страницы этой книги, вы окунётесь в живой поток историй, запечатлевших мужество и самоотверженность жителей  Катав-Ивановского района</span>
                 </div>
