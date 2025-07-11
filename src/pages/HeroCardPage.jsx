@@ -14,18 +14,17 @@ const mockHero = {
         'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память. \n\n Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!',
     photo_url: '/hero.png',
     archive: [
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
-        '/hero.png',
+        { id: 1,url: '/hero.png' },
+        { id: 2,url: '/hero.png' },
+        { id: 3,url: '/hero.png' },
+        { id: 4,url: '/hero.png' },
+        { id: 5,url: '/hero.png' },
+        { id: 6,url: '/hero.png' },
+        { id: 7,url: '/hero.png' },
+        { id: 8,url: '/hero.png' },
+        { id: 9,url: '/hero.png' },
+        { id: 10,url: '/hero.png' },
+        { id: 11,url: '/hero.png' },
     ],
     category: "Герой Великой Отечественной войны",
     rewards: [
@@ -63,6 +62,7 @@ const HeroCardPage = () => {
     const [hero, setHero] = useState({})
     const [loading, setLoading] = useState(true);
     const archiveRef = useRef(null);
+    const [currentPhoto, setCurrentPhoto] = useState(null);
 
     useEffect(() => {
         const fetchHero = async () => {
@@ -77,8 +77,8 @@ const HeroCardPage = () => {
     const scrollLeft = () => {
         if (archiveRef.current) {
             archiveRef.current.scrollBy({
-                left: -400, // Шаг прокрутки (ширина изображения)
-                behavior: "smooth", // Плавная анимация
+                left: -800, // Шаг прокрутки (ширина 2 изображений)
+                behavior: "smooth",
             });
         }
     };
@@ -87,8 +87,8 @@ const HeroCardPage = () => {
     const scrollRight = () => {
         if (archiveRef.current) {
             archiveRef.current.scrollBy({
-                left: 400, // Шаг прокрутки (ширина изображения)
-                behavior: "smooth", // Плавная анимация
+                left: 800, // Шаг прокрутки (ширина 2 изображений)
+                behavior: "smooth",
             });
         }
     };
@@ -146,7 +146,7 @@ const HeroCardPage = () => {
                                 </div>
                                 <div ref={archiveRef} className="flex overflow-auto py-[20px] gap-[20px]">
                                     {hero.archive.map((item, index) => (
-                                        <img key={index} src={item} alt="material" className="w-[400px] h-[400px] object-center object-top rounded-[40px]" />
+                                        <img key={index} src={item.url} alt="material" className="w-[400px] h-[400px] object-center object-top rounded-[40px]" />
                                     ))}
                                 </div>
                             </div>

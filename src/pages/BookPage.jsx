@@ -44,8 +44,8 @@ const BookPage = () => {
                             <div className="w-[52px] h-[52px] bg-[#80011F] rounded-full"></div>
                         </div>
                         <div className="bg-[#FFF9E0] w-[616px] h-[456px] rounded-[96px] mt-[40px] items-center flex flex-col p-[50px] space-y-[30px]">
-                            <span className="w-[552px] font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-[#80011F]">Герои Советского союза, РФ и полные кавалеры ордена славы</span>
-                            <span className="w-[552px] font-[Roboto-Slab] text-[24px]/[100%] font-[400]">Раздел посвящён людям, удостоенным высших государственных наград за личное мужество и героизм.</span>
+                            <span className="w-[552px] font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-[#80011F]">Великая Отечественная война</span>
+                            <span className="w-[552px] font-[Roboto-Slab] text-[24px]/[32px] font-[400]">Раздел охватывает ключевые события, судьбы и подвиги, связанные с Великой Отечественной войной 1941–1945 годов. Это рассказ о героизме солдат и офицеров, , о борьбе за свободу и независимость Родины, ставшей решающим вкладом в победу над фашизмом.</span>
                         </div>
                     </div>
 
@@ -59,8 +59,8 @@ const BookPage = () => {
                             <div className="w-[52px] h-[52px] bg-[#80011F] rounded-full"></div>
                         </div>
                         <div className="bg-[#FFF9E0] w-[616px] h-[456px] rounded-[96px] mt-[40px] items-center flex flex-col p-[50px] space-y-[30px]">
-                            <span className="w-[552px] font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-[#80011F]">Герои Советского союза, РФ и полные кавалеры ордена славы</span>
-                            <span className="w-[552px] font-[Roboto-Slab] text-[24px]/[100%] font-[400]">Раздел посвящён людям, удостоенным высших государственных наград за личное мужество и героизм.</span>
+                            <span className="w-[552px] font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-[#80011F]">Авария на Чернобыльской АЭС</span>
+                            <span className="w-[552px] font-[Roboto-Slab] text-[24px]/[32px] font-[400]">Раздел посвящён трагическим событиям аварии на Чернобыльской атомной электростанции в 1986 году — одной из крупнейших техногенных катастроф в истории. Здесь представлены судьбы ликвидаторов, последствия катастрофы для экологии и общества.</span>
                         </div>
                     </div>
 
@@ -74,8 +74,8 @@ const BookPage = () => {
                             <div className="w-[52px] h-[52px] bg-[#80011F] rounded-full"></div>
                         </div>
                         <div className="bg-[#FFF9E0] w-[616px] h-[456px] rounded-[96px] mt-[40px] items-center flex flex-col p-[50px] space-y-[30px]">
-                            <span className="w-[552px] font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-[#80011F]">Герои Советского союза, РФ и полные кавалеры ордена славы</span>
-                            <span className="w-[552px] font-[Roboto-Slab] text-[24px]/[100%] font-[400]">Раздел посвящён людям, удостоенным высших государственных наград за личное мужество и героизм.</span>
+                            <span className="w-[552px] font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-[#80011F]">Локальные военные конфликты</span>
+                            <span className="w-[552px] font-[Roboto-Slab] text-[24px]/[32px] font-[400]">Раздел рассказывает о военных конфликтах, в которых принимали участие советские и российские военнослужащие за пределами масштабных войн. Афганистан, Чечня, Сирия и другие горячие точки стали испытанием мужества, долга и верности присяге. </span>
                         </div>
                     </div>
 
@@ -89,8 +89,8 @@ const BookPage = () => {
                             <div className="w-[52px] h-[52px] bg-[#80011F] rounded-full"></div>
                         </div>
                         <div className="bg-[#FFF9E0] w-[616px] h-[456px] rounded-[96px] mt-[40px] items-center flex flex-col p-[50px] space-y-[30px]">
-                            <span className="w-[552px] font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-[#80011F]">Герои Советского союза, РФ и полные кавалеры ордена славы</span>
-                            <span className="w-[552px] font-[Roboto-Slab] text-[24px]/[100%] font-[400]">Раздел посвящён людям, удостоенным высших государственных наград за личное мужество и героизм.</span>
+                            <span className="w-[552px] font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-[#80011F]">Герои СВО</span>
+                            <span className="w-[552px] font-[Roboto-Slab] text-[24px]/[32px] font-[400]">Раздел посвящён участникам специальной военной операции, проявившим мужество, стойкость и верность присяге. Эти люди с честью выполняют боевые задачи, защищая интересы Родины.</span>
                         </div>
                     </div>
                 </div>
