@@ -15,15 +15,15 @@ const mockHero = {
     photo_url: '/hero.png',
     archive: [
         { id: 1,url: '/hero.png' },
-        { id: 2,url: '/bg-book.png' },
-        { id: 3,url: '/child.png' },
+        { id: 2,url: '/veteran.jpg' },
+        { id: 3,url: '/tank.png' },
         { id: 4,url: '/hero.png' },
-        { id: 5,url: '/hero.png' },
+        { id: 5,url: '/veteran.jpg' },
         { id: 6,url: '/hero.png' },
-        { id: 7,url: '/hero.png' },
+        { id: 7,url: '/veteran.jpg' },
         { id: 8,url: '/hero.png' },
-        { id: 9,url: '/hero.png' },
-        { id: 10,url: '/hero.png' },
+        { id: 9,url: '/veteran.jpg' },
+        { id: 10,url: '/tank.png' },
         { id: 11,url: '/hero.png' },
     ],
     category: "Герой Великой Отечественной войны",
@@ -95,7 +95,6 @@ const HeroCardPage = () => {
 
     const openModal = (index) => {
         setCurrentPhotoIndex(index);
-        console.log(currentPhotoIndex)
     };
 
     const closeModal = () => {
@@ -106,14 +105,12 @@ const HeroCardPage = () => {
         setCurrentPhotoIndex((prevIndex) =>
             prevIndex === 0 ? hero.archive.length - 1 : prevIndex - 1
         );
-        console.log(currentPhotoIndex);
     };
 
     const goToNext = () => {
         setCurrentPhotoIndex((prevIndex) =>
             prevIndex === hero.archive.length - 1 ? 0 : prevIndex + 1
         );
-        console.log(currentPhotoIndex);
     };
 
     return (
@@ -130,7 +127,7 @@ const HeroCardPage = () => {
                             </div>
                             <div className="pt-[42px] border-t-[2px] border-[#8B8785] my-[40px]">
                                 <div className="flex gap-x-[40px]">
-                                    <img src={hero.photo_url} alt="Hero" className="w-[680px] h-[680px] rounded-[64px] object-center object-top" />
+                                    <img src={hero.photo_url} alt="Hero" className="w-[680px] h-[680px] rounded-[64px]" />
                                     <div className="flex flex-col gap-[67px] w-[1380px]">
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{hero.full_name}</h3>
@@ -173,7 +170,7 @@ const HeroCardPage = () => {
                                             key={index}
                                             src={item.url}
                                             alt="material"
-                                            className="w-[400px] h-[400px] object-center object-top rounded-[40px] cursor-pointer"
+                                            className="w-[400px] h-[400px] rounded-[40px] cursor-pointer"
                                             onClick={() => openModal(index)}
                                         />
                                     ))}
@@ -190,10 +187,9 @@ const HeroCardPage = () => {
                                     ))}
                                 </div>
                             </div>
-                            <div className="sticky bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#FCEFD6] pointer-events-none z-99" />
                             {currentPhotoIndex !== null && (
                                 <div key={hero.archive[currentPhotoIndex].id} className="absolute inset-0 bg-black/80 flex items-center justify-center z-[1000]">
-                                    <div className="relative flex flex-col justify-center items-center gap-[80px]">
+                                    <div className="flex flex-col justify-center items-center gap-[80px]">
                                         <img
                                             src={hero.archive[currentPhotoIndex].url}
                                             alt="archive"
@@ -205,18 +201,18 @@ const HeroCardPage = () => {
                                         >
                                             <img src="/closeWhite.svg" alt="close" className="w-[64px] h-[64px]" />
                                         </button>
-                                        {/*<button*/}
-                                        {/*    onClick={goToPrevious}*/}
-                                        {/*    className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#80011F] rounded-full flex items-center justify-center"*/}
-                                        {/*>*/}
-                                        {/*    <img src="/arrow.svg" alt="Previous" className="w-6 h-6" />*/}
-                                        {/*</button>*/}
-                                        {/*<button*/}
-                                        {/*    onClick={goToNext}*/}
-                                        {/*    className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#80011F] rounded-full flex items-center justify-center"*/}
-                                        {/*>*/}
-                                        {/*    <img src="/arrow.svg" alt="Next" className="w-6 h-6 rotate-180" />*/}
-                                        {/*</button>*/}
+                                        <button
+                                            onClick={goToPrevious}
+                                            className="absolute left-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
+                                        >
+                                            <img src="/arrowWhite.svg" alt="Previous" className="w-[64px] h-[64px]" />
+                                        </button>
+                                        <button
+                                            onClick={goToNext}
+                                            className="absolute right-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
+                                        >
+                                            <img src="/arrowWhite.svg" alt="Next" className="w-[64px] h-[64px] rotate-180" />
+                                        </button>
                                     </div>
                                 </div>
                             )}
