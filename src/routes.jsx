@@ -9,7 +9,6 @@ const AppRoutes = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/keyboard" element={<Keyboard/>}/>
                 <Route path="/book" element={<BookPage/>}/>
                 <Route path="/" element={<HomePage/>}/>
 

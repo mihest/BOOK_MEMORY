@@ -1,12 +1,10 @@
-# React + Vite
+# Book Memory
+Страницы подготовылены для подключения к backend'у:
+* /src/pages/SearchPage.jsx 91 строка - функция для отправки запроса на получения списка героев войны
+* /src/pages/SearchPage.jsx 103 строка - функция изменяющая текст инпута виртуальной клавиатуры, там можно отправлять запрос на сервер для получения отфильтреванных героев
+* /src/pages/HeroCardPage.jsx 69 строка - функция для отправки запроса на получения информации о герое
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Стек технологий
+* Vite + React
+* React-router-dom
+* TailwindCSS
