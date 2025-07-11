@@ -6,7 +6,7 @@ import shift from '../assets/shift.svg';
 import shiftBlack from '../assets/shiftBlack.svg';
 import { useState } from "react";
 
-const KeyboardComponent = ({ setIsOpen }) => {
+const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
     const [input, setInput] = useState('');
     const [isRussian, setIsRussian] = useState(true);
     const [showSymbols, setShowSymbols] = useState(false);
@@ -153,6 +153,7 @@ const KeyboardComponent = ({ setIsOpen }) => {
 
     const handleClearInput = () => {
         setInput('');
+        onInputChange('');
     };
 
     const handleHideKeyboard = () => {
@@ -163,24 +164,31 @@ const KeyboardComponent = ({ setIsOpen }) => {
         if (action) {
             action();
         } else if (key === 'Backspace') {
-            setInput((prev) => prev.slice(0, -1));
+            const newInput = input.slice(0, -1);
+            setInput(newInput);
+            onInputChange(newInput);
         } else {
-            setInput((prev) => prev + key);
+            const newInput = input + key;
+            setInput(newInput);
+            onInputChange(newInput);
         }
     };
 
     return (
-        <div className="flex flex-col w-[1920px] h-[944px] bg-[#FCEFD6] rounded-[16px] p-[40px] gap-[40px] font-[Roboto-Slab]" style={{ boxShadow: "0px 0px 32px 0px rgba(35, 1, 9, 0.25)" }}>
+        <div className="fixed bottom-0 left-0 right-0 bg-[#FCEFD6] rounded-t-[16px] p-[40px] gap-[40px] font-[Roboto-Slab] z-50" style={{ boxShadow: "0px 0px 32px 0px rgba(35, 1, 9, 0.25)", maxWidth: '1700px', margin: '0 auto' }}>
             <div className="flex relative items-center">
                 <input
                     type="text"
                     className="pl-[40px] pr-[100px] w-full h-[144px] border-[#80011F] border-[4px] rounded-[48px] text-[40px] font-[400] bg-[#FFF9E0]"
                     value={input}
-                    onChange={(e) => setInput(e.target.value)} // Добавлен onChange
+                    onChange={(e) => {
+                        setInput(e.target.value);
+                        onInputChange(e.target.value);
+                    }} // Добавлен onChange
                 />
                 <img src={clear} alt="Очистить" className="absolute z-99 right-[35px] cursor-pointer" onClick={handleClearInput} />
             </div>
-            <div className="flex flex-col p-[48px] bg-[#FFF9E0] rounded-[48px] gap-[16px] w-full h-[528px]">
+            <div className="flex flex-col p-[48px] bg-[#FFF9E0] rounded-[48px] gap-[16px] w-full h-[528px] overflow-y-auto">
                 {currentLayout.map((row, rowIndex) => (
                     <div key={rowIndex} className="flex justify-center gap-[16px]">
                         {row.map((button) => (

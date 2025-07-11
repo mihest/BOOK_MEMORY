@@ -1,5 +1,7 @@
-import React from 'react';
-import {Link, useParams} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import KeyboardComponent from "../components/Keyboard.jsx";
+
 const peopleData = [
     {
         id: 1,
@@ -47,8 +49,9 @@ const peopleData = [
         imageUrl: "/veteran.jpg"
     }
 ];
+
 const SearchPage = () => {
-    const {id} = useParams();
+    const { id } = useParams();
     const texts = {
         1: {
             title: "Герои Советского союза, РФ и полные кавалеры ордена славы",
@@ -64,7 +67,7 @@ const SearchPage = () => {
         },
         4: {
             title: "Локальные военные конфликты",
-            description: "Истории участников Локальные военных конфликтов, проявивших мужество и стойкость в годы тяжёлых испытаний."
+            description: "Истории участников Локальных военных конфликтов, проявивших мужество и стойкость в годы тяжёлых испытаний."
         },
         5: {
             title: "Герои СВО",
@@ -73,6 +76,21 @@ const SearchPage = () => {
     };
 
     const text = texts[id];
+    const [isOpen, setIsOpen] = useState(false);
+    const [searchText, setSearchText] = useState('');
+
+    const handleOpenKeyboard = () => {
+        setIsOpen(true);
+    };
+
+    const handleCloseKeyboard = () => {
+        setIsOpen(false);
+    };
+
+    const handleInputChange = (newText) => {
+        setSearchText(newText);
+        console.log("Поиск:", newText); // Выводим введенный текст в консоль
+    };
 
     return (
         <div className="flex-1 flex bg-[#FFF9E0] p-[80px]">
@@ -91,7 +109,8 @@ const SearchPage = () => {
                     </div>
 
                     <button
-                    className="bg-[#80011F] w-[582px] h-[144px] flex items-center justify-center gap-[20px] uppercase rounded-[48px]">
+                        className="bg-[#80011F] w-[582px] h-[144px] flex items-center justify-center gap-[20px] uppercase rounded-[48px]"
+                        onClick={handleOpenKeyboard}>
                         <img src="/lupa.svg" alt="lupa_ico"/>
                         <span className="font-[Roboto-Slab] text-[40px]/[100%] font-[700] text-white tracking-[12%]">Найти героя</span>
                     </button>
@@ -112,6 +131,12 @@ const SearchPage = () => {
                         ))}
                     </div>
                 </div>
+                {isOpen && (
+                    <KeyboardComponent
+                        setIsOpen={setIsOpen}
+                        onInputChange={handleInputChange}
+                    />
+                )}
             </div>
         </div>
     );
