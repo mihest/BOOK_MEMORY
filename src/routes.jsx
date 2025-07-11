@@ -3,17 +3,18 @@ import Keyboard from "./pages/Keyboard.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import BookPage from "./pages/BookPage.jsx";
 import HeroCardPage from "./pages/HeroCardPage.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
 
 const AppRoutes = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/keyboard" element={<Keyboard />} />
-                
-                <Route path="/book" element={<BookPage />} />
-                <Route path="/" element={<HomePage />} />
+                <Route path="/keyboard" element={<Keyboard/>}/>
+                <Route path="/book" element={<BookPage/>}/>
+                <Route path="/" element={<HomePage/>}/>
 
-                <Route path="/hero/:id" element={<HeroCardPage />} />
+                <Route path="/search/:id" element={<SearchPage />} />
+                <Route path="/hero/:id" element={<HeroCardPage/>}/>
 
                 <Route path="*" element={<Navigate to="/" replace/>}/>
             </Routes>
