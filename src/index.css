@@ -25,29 +25,32 @@ body{
     font-style: normal;
 }
 
-/* Стили для вертикального скроллбара (hero-content) */
+@font-face {
+    font-family: 'Montserat';
+    src: local('Montserat'), url('./fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+}
+
 *::-webkit-scrollbar {
-    width: 32px; /* Ширина скроллбара */
+    width: 32px;
 }
 
 *::-webkit-scrollbar-track {
-    background: transparent; /* Фон дорожки скроллбара */
-    border-radius: 24px; /* Скругление краёв */
+    background: transparent;
+    border-radius: 24px;
 }
 
 *::-webkit-scrollbar-thumb {
-    background: #E8DBC2; /* Цвет ползунка */
-    border-radius: 24px; /* Скругление ползунка */
-    border: 2px solid #E8DBC2; /* Отступ от краёв для эффекта */
+    background: #E8DBC2;
+    border-radius: 24px;
+    border: 2px solid #E8DBC2;
 }
 
-/* Стили для горизонтального скроллбара (архив) */
 *::-webkit-scrollbar {
-    height: 32px; /* Высота горизонтального скроллбара */
+    height: 32px;
 }
 
-/* Fallback для Firefox */
 * {
-    scrollbar-width: auto; /* Тонкий скроллбар */
-    scrollbar-color: #E8DBC2 transparent; /* Цвет ползунка и фона */
+    scrollbar-width: auto;
+    scrollbar-color: #E8DBC2 transparent;
 }
