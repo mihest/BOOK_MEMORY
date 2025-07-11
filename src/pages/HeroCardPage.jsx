@@ -15,15 +15,15 @@ const mockHero = {
     photo_url: '/hero.png',
     archive: [
         { id: 1,url: '/hero.png' },
-        { id: 2,url: '/hero.png' },
-        { id: 3,url: '/hero.png' },
+        { id: 2,url: '/veteran.jpg' },
+        { id: 3,url: '/tank.png' },
         { id: 4,url: '/hero.png' },
-        { id: 5,url: '/hero.png' },
+        { id: 5,url: '/veteran.jpg' },
         { id: 6,url: '/hero.png' },
-        { id: 7,url: '/hero.png' },
+        { id: 7,url: '/veteran.jpg' },
         { id: 8,url: '/hero.png' },
-        { id: 9,url: '/hero.png' },
-        { id: 10,url: '/hero.png' },
+        { id: 9,url: '/veteran.jpg' },
+        { id: 10,url: '/tank.png' },
         { id: 11,url: '/hero.png' },
     ],
     category: "Герой Великой Отечественной войны",
@@ -62,7 +62,7 @@ const HeroCardPage = () => {
     const [hero, setHero] = useState({})
     const [loading, setLoading] = useState(true);
     const archiveRef = useRef(null);
-    const [currentPhoto, setCurrentPhoto] = useState(null);
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
 
     useEffect(() => {
         const fetchHero = async () => {
@@ -93,9 +93,29 @@ const HeroCardPage = () => {
         }
     };
 
+    const openModal = (index) => {
+        setCurrentPhotoIndex(index);
+    };
+
+    const closeModal = () => {
+        setCurrentPhotoIndex(null);
+    };
+
+    const goToPrevious = () => {
+        setCurrentPhotoIndex((prevIndex) =>
+            prevIndex === 0 ? hero.archive.length - 1 : prevIndex - 1
+        );
+    };
+
+    const goToNext = () => {
+        setCurrentPhotoIndex((prevIndex) =>
+            prevIndex === hero.archive.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
     return (
-        <div className="bg-[#FDF6DE] p-[80px] flex-1 flex">
-            <div className="bg-[#FCEFD6] flex-1 rounded-[128px] py-[80px] relative">
+        <div className="bg-[#FDF6DE] p-[80px] flex-1 flex relative">
+            <div className="bg-[#FCEFD6] flex-1 rounded-[128px] py-[80px]">
                 <div className="overflow-auto px-[80px] h-[2000px]">
                     {loading ? <Loader /> : (
                         <>
@@ -107,7 +127,7 @@ const HeroCardPage = () => {
                             </div>
                             <div className="pt-[42px] border-t-[2px] border-[#8B8785] my-[40px]">
                                 <div className="flex gap-x-[40px]">
-                                    <img src={hero.photo_url} alt="Hero" className="w-[680px] h-[680px] rounded-[64px] object-center object-top" />
+                                    <img src={hero.photo_url} alt="Hero" className="w-[680px] h-[680px] rounded-[64px]" />
                                     <div className="flex flex-col gap-[67px] w-[1380px]">
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{hero.full_name}</h3>
@@ -146,7 +166,13 @@ const HeroCardPage = () => {
                                 </div>
                                 <div ref={archiveRef} className="flex overflow-auto py-[20px] gap-[20px]">
                                     {hero.archive.map((item, index) => (
-                                        <img key={index} src={item.url} alt="material" className="w-[400px] h-[400px] object-center object-top rounded-[40px]" />
+                                        <img
+                                            key={index}
+                                            src={item.url}
+                                            alt="material"
+                                            className="w-[400px] h-[400px] rounded-[40px] cursor-pointer"
+                                            onClick={() => openModal(index)}
+                                        />
                                     ))}
                                 </div>
                             </div>
@@ -154,14 +180,42 @@ const HeroCardPage = () => {
                                 <h2 className="text-[#2B2A29] text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Награды героя</h2>
                                 <div className="grid grid-cols-2 gap-[20px] mt-[40px]">
                                     {hero.rewards.map((item, index) => (
-                                        <div className="w-[1750px] p-[40px] bg-[#FFF9E0] rounded-[64px]">
+                                        <div key={index} className="w-[1750px] p-[40px] bg-[#FFF9E0] rounded-[64px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">{item.title} ● {item.year}</h3>
                                             <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{item.description}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                            <div className="sticky bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#FCEFD6] pointer-events-none z-99" />
+                            {currentPhotoIndex !== null && (
+                                <div key={hero.archive[currentPhotoIndex].id} className="absolute inset-0 bg-black/80 flex items-center justify-center z-[1000]">
+                                    <div className="flex flex-col justify-center items-center gap-[80px]">
+                                        <img
+                                            src={hero.archive[currentPhotoIndex].url}
+                                            alt="archive"
+                                            className="max-w-[3157px] h-[1776px] object-cover rounded-[16px]"
+                                        />
+                                        <button
+                                            onClick={closeModal}
+                                            className="w-[330px] h-[144px] bg-[#80011F] rounded-[48px] flex items-center justify-center"
+                                        >
+                                            <img src="/closeWhite.svg" alt="close" className="w-[64px] h-[64px]" />
+                                        </button>
+                                        <button
+                                            onClick={goToPrevious}
+                                            className="absolute left-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
+                                        >
+                                            <img src="/arrowWhite.svg" alt="Previous" className="w-[64px] h-[64px]" />
+                                        </button>
+                                        <button
+                                            onClick={goToNext}
+                                            className="absolute right-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
+                                        >
+                                            <img src="/arrowWhite.svg" alt="Next" className="w-[64px] h-[64px] rotate-180" />
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         </>
                     )}
                 </div>
