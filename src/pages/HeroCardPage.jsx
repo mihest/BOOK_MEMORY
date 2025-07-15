@@ -193,7 +193,7 @@ const HeroCardPage = () => {
                                         <img
                                             src={hero.archive[currentPhotoIndex].url}
                                             alt="archive"
-                                            className="max-w-[3157px] h-[1776px] object-cover rounded-[16px]"
+                                            className="max-w-[3157px] h-[1776px] object-cover rounded-[48px]"
                                         />
                                         <button
                                             onClick={closeModal}
