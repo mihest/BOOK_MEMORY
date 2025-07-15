@@ -1,5 +1,4 @@
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
-import Keyboard from "./pages/Keyboard.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import BookPage from "./pages/BookPage.jsx";
 import HeroCardPage from "./pages/HeroCardPage.jsx";
@@ -9,7 +8,6 @@ const AppRoutes = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/keyboard" element={<Keyboard/>}/>
                 <Route path="/book" element={<BookPage/>}/>
                 <Route path="/" element={<HomePage/>}/>
 

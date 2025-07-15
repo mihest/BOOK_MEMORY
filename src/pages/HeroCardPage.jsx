@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
 import Loader from "../components/Loader.jsx";
 
@@ -11,7 +11,13 @@ const mockHero = {
     description: 'Мой дедушка, Шевельков Владимир Максимович, с 1911 года проживал в семье рабочего- печатника в городе Санкт-Петербурге.\n\n' +
         'С 1929 года началась его военная служба. С 1939 года был переведен на работу Государственной Безопасности. Годвы войны провел в осажденном Ленинграде, где был назначен нач. отдела военной цензуры Ленинградского фронта.\n\n' +
         'Награжден орденом «Знак почета», имеет медаль «За оборону Ленинграда», медаль «За боевые заслуги», ордена Красной Звезды, орден «Знак Почета».\n\n' +
-        'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память. \n\n Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!',
+        'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память. \n\n+\n' +
+        '        \'С 1929 года началась его военная служба. С 1939 года был переведен на работу Государственной Безопасности. Годвы войны провел в осажденном Ленинграде, где был назначен нач. отдела военной цензуры Ленинградского фронта.\\n\\n\' +\n' +
+        '        \'Награжден орденом «Знак почета», имеет медаль «За оборону Ленинграда», медаль «За боевые заслуги», ордена Красной Звезды, орден «Знак Почета».\\n\\n\' +\n' +
+        '        \'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память. \\n\\n+\n' +
+        '        \'С 1929 года началась его военная служба. С 1939 года был переведен на работу Государственной Безопасности. Годвы войны провел в осажденном Ленинграде, где был назначен нач. отдела военной цензуры Ленинградского фронта.\\n\\n\' +\n' +
+        '        \'Награжден орденом «Знак почета», имеет медаль «За оборону Ленинграда», медаль «За боевые заслуги», ордена Красной Звезды, орден «Знак Почета».\\n\\n\' +\n' +
+        '        \'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память. \\n\\n Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!',
     photo_url: '/hero.png',
     archive: [
         { id: 1,url: '/hero.png' },
@@ -63,6 +69,7 @@ const HeroCardPage = () => {
     const [loading, setLoading] = useState(true);
     const archiveRef = useRef(null);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchHero = async () => {
@@ -113,16 +120,24 @@ const HeroCardPage = () => {
         );
     };
 
+    const handleClickNavigate = () => {
+        if (window.history.length > 1) {
+            navigate(-1);
+        } else {
+            navigate('/');
+        }
+    };
+
     return (
         <div className="bg-[#FDF6DE] p-[80px] flex-1 flex relative">
-            <div className="bg-[#FCEFD6] flex-1 rounded-[128px] py-[80px]">
+            <div className="bg-[#FCEFD6] relative flex-1 rounded-[128px] py-[80px]">
                 <div className="overflow-auto px-[80px] h-[2000px]">
                     {loading ? <Loader /> : (
                         <>
                             <div className="flex items-center gap-x-[40px]">
-                                <Link to="/" className="w-[144px] h-[144px] rounded-[48px] flex items-center justify-center bg-[#80011F]">
+                                <button onClick={handleClickNavigate} className="w-[144px] h-[144px] rounded-[48px] flex items-center justify-center cursor-pointer bg-[#80011F]">
                                     <img src="/back.svg" alt="Back" />
-                                </Link>
+                                </button>
                                 <span className="bg-gradient-to-b from-[#E60036] to-[#80011F] text-transparent bg-clip-text text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Личная информация</span>
                             </div>
                             <div className="pt-[42px] border-t-[2px] border-[#8B8785] my-[40px]">
@@ -131,7 +146,7 @@ const HeroCardPage = () => {
                                     <div className="flex flex-col gap-[67px] w-[1380px]">
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{hero.full_name}</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{!hero.date_death ? hero.date_birth : `${hero.date_birth}-${hero.date_death}`}</span>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{!hero.date_death ? hero.date_birth : `${hero.date_birth} - ${hero.date_death}`}</span>
                                         </div>
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Место рождения</h3>
@@ -146,7 +161,7 @@ const HeroCardPage = () => {
                                             <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{hero.category}</span>
                                         </div>
                                     </div>
-                                    <div className="w-[1380px] flex flex-col gap-[20px]">
+                                    <div className="w-[1380px] flex flex-col gap-[20px]  h-[680px] overflow-auto">
                                         <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Дополнительные сведения</h3>
                                         <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{hero.description}</span>
                                     </div>
@@ -176,50 +191,51 @@ const HeroCardPage = () => {
                                     ))}
                                 </div>
                             </div>
-                            <div>
+                            <div className="h-[680px]">
                                 <h2 className="text-[#2B2A29] text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Награды героя</h2>
                                 <div className="grid grid-cols-2 gap-[20px] mt-[40px]">
                                     {hero.rewards.map((item, index) => (
-                                        <div key={index} className="w-[1750px] p-[40px] bg-[#FFF9E0] rounded-[64px]">
+                                        <div key={index} className="w-[1750px] flex p-[40px] bg-[#FFF9E0] rounded-[64px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">{item.title} ● {item.year}</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{item.description}</span>
+                                            <span className="text-[28px]/[37px] overflow-auto font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{item.description}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                            {currentPhotoIndex !== null && (
-                                <div key={hero.archive[currentPhotoIndex].id} className="absolute inset-0 bg-black/80 flex items-center justify-center z-[1000]">
-                                    <div className="flex flex-col justify-center items-center gap-[80px]">
-                                        <img
-                                            src={hero.archive[currentPhotoIndex].url}
-                                            alt="archive"
-                                            className="max-w-[3157px] h-[1776px] object-cover rounded-[48px]"
-                                        />
-                                        <button
-                                            onClick={closeModal}
-                                            className="w-[330px] h-[144px] bg-[#80011F] rounded-[48px] flex items-center justify-center"
-                                        >
-                                            <img src="/closeWhite.svg" alt="close" className="w-[64px] h-[64px]" />
-                                        </button>
-                                        <button
-                                            onClick={goToPrevious}
-                                            className="absolute left-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
-                                        >
-                                            <img src="/arrowWhite.svg" alt="Previous" className="w-[64px] h-[64px]" />
-                                        </button>
-                                        <button
-                                            onClick={goToNext}
-                                            className="absolute right-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
-                                        >
-                                            <img src="/arrowWhite.svg" alt="Next" className="w-[64px] h-[64px] rotate-180" />
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
                         </>
                     )}
                 </div>
+                <div className="absolute bottom-[80px] left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#FCEFD6] pointer-events-none z-99" />
             </div>
+            {currentPhotoIndex !== null && (
+                <div key={hero.archive[currentPhotoIndex].id} className="absolute inset-0 bg-black/80 flex items-center justify-center z-[1000]">
+                    <div className="flex flex-col justify-center items-center gap-[80px]">
+                        <img
+                            src={hero.archive[currentPhotoIndex].url}
+                            alt="archive"
+                            className="max-w-[3157px] h-[1776px] object-cover rounded-[16px]"
+                        />
+                        <button
+                            onClick={closeModal}
+                            className="w-[330px] h-[144px] bg-[#80011F] rounded-[48px] flex items-center justify-center"
+                        >
+                            <img src="/closeWhite.svg" alt="close" className="w-[64px] h-[64px]" />
+                        </button>
+                        <button
+                            onClick={goToPrevious}
+                            className="absolute left-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
+                        >
+                            <img src="/arrowWhite.svg" alt="Previous" className="w-[64px] h-[64px]" />
+                        </button>
+                        <button
+                            onClick={goToNext}
+                            className="absolute right-[398px] top-1/2 transform -translate-y-1/2 w-[64px] h-[64px]"
+                        >
+                            <img src="/arrowWhite.svg" alt="Next" className="w-[64px] h-[64px] rotate-180" />
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 };

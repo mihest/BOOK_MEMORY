@@ -1,6 +1,6 @@
 @import "tailwindcss";
 body{
-    width: 3844px;
+    width: 3840px;
     height: 2160px;
     display: flex;
     flex-direction: column;
@@ -15,19 +15,19 @@ body{
 
 @font-face {
     font-family: 'Roboto-Slab';
-    src: local('Roboto-Slab'), url('./fonts/RobotoSlab-VariableFont_wght.ttf') format('truetype');
+    src: local('Roboto-Slab'), url('/fonts/RobotoSlab-VariableFont_wght.ttf') format('truetype');
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Roboto-Serif-Italic';
-    src: local('Roboto-Serif-Italic'), url('./fonts/RobotoSerif-Italic-VariableFont_GRAD,opsz,wdth,wght.ttf') format('truetype');
+    src: local('Roboto-Serif-Italic'), url('/fonts/RobotoSerif-Italic-VariableFont_GRAD,opsz,wdth,wght.ttf') format('truetype');
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Montserat';
-    src: local('Montserat'), url('./fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+    src: local('Montserat'), url('/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
     font-style: normal;
 }
 

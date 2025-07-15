@@ -1,8 +1,3 @@
-import clear from '../assets/clear.svg';
-import planet from '../assets/planet.svg';
-import backspace from '../assets/backspace.svg';
-import shift from '../assets/shift.svg';
-import shiftBlack from '../assets/shiftBlack.svg';
 import { useState } from "react";
 
 const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
@@ -40,7 +35,7 @@ const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
             { key: isShift ? 'Э' : 'э', label: isShift ? 'Э' : 'э', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
         ],
         [
-            { key: 'Shift', label: <img src={isShift ? shiftBlack : shift} alt="Шифт" className="w-[64px] h-[64px] m-auto" />, className: 'w-[272px] h-[96px] bg-[#E1DBC2]', action: () => setIsShift(!isShift) },
+            { key: 'Shift', label: <img src={isShift ? "/shiftBlack.svg" : "/shift.svg"} alt="Шифт" className="w-[64px] h-[64px] m-auto" />, className: 'w-[272px] h-[96px] bg-[#E1DBC2]', action: () => setIsShift(!isShift) },
             { key: isShift ? 'Я' : 'я', label: isShift ? 'Я' : 'я', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: isShift ? 'Ч' : 'ч', label: isShift ? 'Ч' : 'ч', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: isShift ? 'С' : 'с', label: isShift ? 'С' : 'с', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
@@ -50,12 +45,12 @@ const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
             { key: isShift ? 'Ь' : 'ь', label: isShift ? 'Ь' : 'ь', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: isShift ? 'Б' : 'б', label: isShift ? 'Б' : 'б', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: isShift ? 'Ю' : 'ю', label: isShift ? 'Ю' : 'ю', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
-            { key: 'Backspace', label: <img src={backspace} alt="Очистить" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]' },
+            { key: 'Backspace', label: <img src="/backspace.svg" alt="Очистить" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]' },
         ],
         [
             { key: '123', label: '&123', className: 'w-[280px] h-[96px] bg-[#E1DBC2]', action: () => setShowSymbols(!showSymbols) },
             { key: ' ', label: 'Пробел', className: 'w-[1152px] h-[96px] bg-[#F5EFD6]' },
-            { key: '🌐', label: <img src={planet} alt="Смена языка" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]', action: () => setIsRussian(!isRussian) },
+            { key: '🌐', label: <img src="/planet.svg" alt="Смена языка" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]', action: () => setIsRussian(!isRussian) },
         ],
     ];
 
@@ -69,7 +64,7 @@ const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
             { key: isShift ? 'Y' : 'y', label: isShift ? 'Y' : 'y', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: isShift ? 'U' : 'u', label: isShift ? 'U' : 'u', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: isShift ? 'I' : 'i', label: isShift ? 'I' : 'i', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
-            { key: isShift ? 'O' : 'o', label: isShift ? 'O' : 'o', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
+            { key: isShift ? 'O' : 'o', label: isShift ? 'O' : 'о', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: isShift ? 'P' : 'p', label: isShift ? 'P' : 'p', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
         ],
         [
@@ -85,7 +80,7 @@ const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
             { key: ';', label: ';', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
         ],
         [
-            { key: 'Shift', label: <img src={isShift ? shiftBlack : shift} alt="Шифт" className="w-[64px] h-[64px] m-auto" />, className: 'w-[272px] h-[96px] bg-[#E1DBC2]', action: () => setIsShift(!isShift) },
+            { key: 'Shift', label: <img src={isShift ? "/shiftBlack.svg" : "/shift.svg"} alt="Шифт" className="w-[64px] h-[64px] m-auto" />, className: 'w-[272px] h-[96px] bg-[#E1DBC2]', action: () => setIsShift(!isShift) },
             { key: isShift ? 'Z' : 'z', label: isShift ? 'Z' : 'z', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: isShift ? 'X' : 'x', label: isShift ? 'X' : 'x', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: isShift ? 'C' : 'c', label: isShift ? 'C' : 'c', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
@@ -95,12 +90,12 @@ const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
             { key: isShift ? 'M' : 'm', label: isShift ? 'M' : 'm', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: ',', label: ',', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
             { key: '.', label: '.', className: 'w-[136px] h-[96px] bg-[#F5EFD6]' },
-            { key: 'Backspace', label: <img src={backspace} alt="Очистить" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]' },
+            { key: 'Backspace', label: <img src="/backspace.svg" alt="Очистить" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]' },
         ],
         [
             { key: '123', label: '&123', className: 'w-[280px] h-[96px] bg-[#E1DBC2]', action: () => setShowSymbols(!showSymbols) },
             { key: ' ', label: 'Пробел', className: 'w-[1152px] h-[96px] bg-[#F5EFD6]' },
-            { key: '🌐', label: <img src={planet} alt="Смена языка" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]', action: () => setIsRussian(!isRussian) },
+            { key: '🌐', label: <img src="/planet.svg" alt="Смена языка" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]', action: () => setIsRussian(!isRussian) },
         ],
     ];
 
@@ -144,7 +139,7 @@ const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
         [
             { key: 'ABC', label: 'ABC', className: 'w-[280px] h-[96px] bg-[#E1DBC2]', action: () => setShowSymbols(!showSymbols) },
             { key: ' ', label: 'Пробел', className: 'w-[1152px] h-[96px] bg-[#F5EFD6]' },
-            { key: 'Backspace', label: <img src={backspace} alt="Очистить" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]' },
+            { key: 'Backspace', label: <img src="/backspace.svg" alt="Очистить" className="w-[48px] h-[48px] m-auto" />, className: 'w-[280px] h-[96px] bg-[#E1DBC2]' },
         ],
     ];
 
@@ -174,7 +169,7 @@ const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
     };
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 bg-[#FCEFD6] rounded-t-[16px] p-[40px] gap-[40px] font-[Roboto-Slab] z-50" style={{ boxShadow: "0px 0px 32px 0px rgba(35, 1, 9, 0.25)", maxWidth: '1700px', margin: '0 auto' }}>
+        <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 flex flex-col w-[1920px] max-w-full h-[944px] bg-[#FCEFD6] rounded-[88px] p-[40px] gap-[40px] font-[Roboto-Slab] z-50" style={{ boxShadow: "0px 0px 32px 0px rgba(35, 1, 9, 0.25)" }}>
             <div className="flex relative items-center">
                 <input
                     type="text"
@@ -185,7 +180,7 @@ const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
                         onInputChange(e.target.value);
                     }} // Добавлен onChange
                 />
-                <img src={clear} alt="Очистить" className="absolute z-99 right-[35px] cursor-pointer" onClick={handleClearInput} />
+                <img src="/clear.svg" alt="Очистить" className="absolute z-99 right-[35px] cursor-pointer" onClick={handleClearInput} />
             </div>
             <div className="flex flex-col p-[48px] bg-[#FFF9E0] rounded-[48px] gap-[16px] w-full h-[528px] overflow-y-auto">
                 {currentLayout.map((row, rowIndex) => (
@@ -193,9 +188,8 @@ const KeyboardComponent = ({ setIsOpen, onInputChange }) => {
                         {row.map((button) => (
                             <button
                                 key={button.key}
-                                className={`flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-[36px]/[100%] font-medium h-12 transition-colors rounded-[16px] ${button.className}`}
+                                className={`flex items-center justify-center focus:outline-none shadow-sm focus:ring-2 focus:ring-[#A68A64] text-center text-[36px]/[100%] font-medium h-12 transition-colors rounded-[16px] ${button.className}`}
                                 onClick={() => handleKeyClick(button.key, button.action)}
-                                style={{ boxShadow: '0px 2px 0px 0px rgba(0, 0, 0, 0.3)' }}
                             >
                                 {button.label}
                             </button>
