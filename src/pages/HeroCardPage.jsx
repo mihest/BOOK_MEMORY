@@ -1,5 +1,5 @@
-import {Link, useNavigate, useParams} from "react-router-dom";
-import {useEffect, useRef, useState} from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import Loader from "../components/Loader.jsx";
 
 const mockHero = {
@@ -8,29 +8,24 @@ const mockHero = {
     date_death: '12.12.2000',
     place_birth: 'Ижевск',
     rank: 'Майор',
-    description: 'Мой дедушка, Шевельков Владимир Максимович, с 1911 года проживал в семье рабочего- печатника в городе Санкт-Петербурге.\n\n' +
-        'С 1929 года началась его военная служба. С 1939 года был переведен на работу Государственной Безопасности. Годвы войны провел в осажденном Ленинграде, где был назначен нач. отдела военной цензуры Ленинградского фронта.\n\n' +
-        'Награжден орденом «Знак почета», имеет медаль «За оборону Ленинграда», медаль «За боевые заслуги», ордена Красной Звезды, орден «Знак Почета».\n\n' +
-        'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память. \n\n+\n' +
-        '        \'С 1929 года началась его военная служба. С 1939 года был переведен на работу Государственной Безопасности. Годвы войны провел в осажденном Ленинграде, где был назначен нач. отдела военной цензуры Ленинградского фронта.\\n\\n\' +\n' +
-        '        \'Награжден орденом «Знак почета», имеет медаль «За оборону Ленинграда», медаль «За боевые заслуги», ордена Красной Звезды, орден «Знак Почета».\\n\\n\' +\n' +
-        '        \'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память. \\n\\n+\n' +
-        '        \'С 1929 года началась его военная служба. С 1939 года был переведен на работу Государственной Безопасности. Годвы войны провел в осажденном Ленинграде, где был назначен нач. отдела военной цензуры Ленинградского фронта.\\n\\n\' +\n' +
-        '        \'Награжден орденом «Знак почета», имеет медаль «За оборону Ленинграда», медаль «За боевые заслуги», ордена Красной Звезды, орден «Знак Почета».\\n\\n\' +\n' +
-        '        \'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память. \\n\\n Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!',
+    description: 'Мой дедушка, Шевельков Владимир Максимович, с 1911 года проживал в семье рабочего- печатника в городе Санкт-Петербурге.\n' +
+        'С 1929 года началась его военная служба. С 1939 года был переведен на работу Государственной Безопасности. Годвы войны провел в осажденном Ленинграде, где был назначен нач. отдела военной цензуры Ленинградского фронта.\n' +
+        'Награжден орденом «Знак почета», имеет медаль «За оборону Ленинграда», медаль «За боевые заслуги», ордена Красной Звезды, орден «Знак Почета».\n' +
+        'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память.\n' +
+        'Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!',
     photo_url: '/hero.png',
     archive: [
-        { id: 1,url: '/hero.png' },
-        { id: 2,url: '/veteran.jpg' },
-        { id: 3,url: '/tank.png' },
-        { id: 4,url: '/hero.png' },
-        { id: 5,url: '/veteran.jpg' },
-        { id: 6,url: '/hero.png' },
-        { id: 7,url: '/veteran.jpg' },
-        { id: 8,url: '/hero.png' },
-        { id: 9,url: '/veteran.jpg' },
-        { id: 10,url: '/tank.png' },
-        { id: 11,url: '/hero.png' },
+        { id: 1, url: '/hero.png' },
+        { id: 2, url: '/veteran.jpg' },
+        { id: 3, url: '/tank.png' },
+        { id: 4, url: '/hero.png' },
+        { id: 5, url: '/veteran.jpg' },
+        { id: 6, url: '/hero.png' },
+        { id: 7, url: '/veteran.jpg' },
+        { id: 8, url: '/hero.png' },
+        { id: 9, url: '/veteran.jpg' },
+        { id: 10, url: '/tank.png' },
+        { id: 11, url: '/hero.png' },
     ],
     category: "Герой Великой Отечественной войны",
     rewards: [
@@ -62,39 +57,63 @@ const mockHero = {
     ]
 };
 
-
 const HeroCardPage = () => {
     const { id } = useParams();
-    const [hero, setHero] = useState({})
+    const [hero, setHero] = useState({});
     const [loading, setLoading] = useState(true);
     const archiveRef = useRef(null);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
     const navigate = useNavigate();
+    const [canScrollRight, setCanScrollRight] = useState(true);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
 
     useEffect(() => {
         const fetchHero = async () => {
-            // Запрос на получение героя по id
-            setHero(mockHero)
-            setLoading(false)
-        }
-
+            setHero(mockHero);
+            setLoading(false);
+        };
         fetchHero();
     }, [id]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (archiveRef.current) {
+                const { scrollLeft, scrollWidth, clientWidth } = archiveRef.current;
+                const canScrollRight = scrollLeft + clientWidth < scrollWidth - 40;
+                const canScrollLeft = scrollLeft > 0;
+                setCanScrollRight(canScrollRight);
+                setCanScrollLeft(canScrollLeft);
+                // console.log("scrollLeft:", scrollLeft, "clientWidth:", clientWidth, "scrollWidth:", scrollWidth, "canScrollRight:", canScrollRight, "canScrollLeft:", canScrollLeft);
+            }
+        };
+
+        if (archiveRef.current) {
+            archiveRef.current.addEventListener('scroll', handleScroll);
+            setTimeout(() => {
+                handleScroll();
+            }, 100);
+        }
+
+        return () => {
+            if (archiveRef.current) {
+                archiveRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [hero]);
 
     const scrollLeft = () => {
         if (archiveRef.current) {
             archiveRef.current.scrollBy({
-                left: -800, // Шаг прокрутки (ширина 2 изображений)
+                left: -800,
                 behavior: "smooth",
             });
         }
     };
 
-    // Функция для прокрутки вправо
     const scrollRight = () => {
         if (archiveRef.current) {
             archiveRef.current.scrollBy({
-                left: 800, // Шаг прокрутки (ширина 2 изображений)
+                left: 800,
                 behavior: "smooth",
             });
         }
@@ -161,7 +180,7 @@ const HeroCardPage = () => {
                                             <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{hero.category}</span>
                                         </div>
                                     </div>
-                                    <div className="w-[1380px] flex flex-col gap-[20px]  h-[680px] overflow-auto">
+                                    <div className="w-[1380px] flex flex-col gap-[20px] h-[680px] overflow-auto">
                                         <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Дополнительные сведения</h3>
                                         <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{hero.description}</span>
                                     </div>
@@ -169,12 +188,12 @@ const HeroCardPage = () => {
                             </div>
                             <div className="border-b-[2px] border-[#8B8785] pb-[40px]">
                                 <div className="flex justify-between">
-                                    <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab">Материалы архива</h3>
+                                    <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Материалы архива</h3>
                                     <div className="flex gap-[20px]">
-                                        <button onClick={scrollLeft} className="w-[82px] h-[82px] flex items-center justify-center cursor-pointer">
+                                        <button onClick={scrollLeft} className={`w-[82px] h-[82px] flex items-center justify-center cursor-pointer ${!canScrollLeft && 'opacity-50'}`}>
                                             <img src="/arrow.svg" alt="Arrow" className="w-[42px] h-[42px]" />
                                         </button>
-                                        <button onClick={scrollRight} className="w-[82px] h-[82px] flex items-center justify-center cursor-pointer">
+                                        <button onClick={scrollRight} className={`w-[82px] h-[82px] flex items-center justify-center cursor-pointer ${!canScrollRight && 'opacity-50'}`}>
                                             <img src="/arrow.svg" alt="Arrow" className="w-[42px] h-[42px] rotate-180" />
                                         </button>
                                     </div>
@@ -195,7 +214,7 @@ const HeroCardPage = () => {
                                 <h2 className="text-[#2B2A29] text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Награды героя</h2>
                                 <div className="grid grid-cols-2 gap-[20px] mt-[40px]">
                                     {hero.rewards.map((item, index) => (
-                                        <div key={index} className="w-[1750px] flex p-[40px] bg-[#FFF9E0] rounded-[64px]">
+                                        <div key={index} className="w-full flex flex-col p-[40px] bg-[#FFF9E0] rounded-[64px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">{item.title} ● {item.year}</h3>
                                             <span className="text-[28px]/[37px] overflow-auto font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{item.description}</span>
                                         </div>
@@ -237,7 +256,7 @@ const HeroCardPage = () => {
                 </div>
             )}
         </div>
-    )
+    );
 };
 
 export default HeroCardPage;
