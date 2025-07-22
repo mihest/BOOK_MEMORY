@@ -116,7 +116,14 @@ const HeroCardPage = () => {
                                 <button onClick={handleClickNavigate} className="w-[144px] h-[144px] rounded-[48px] flex items-center justify-center cursor-pointer bg-[#80011F]">
                                     <img src="/back.svg" alt="Back" />
                                 </button>
-                                <span className="bg-gradient-to-b from-[#E60036] to-[#80011F] text-transparent bg-clip-text text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Личная информация</span>
+                                <span
+                                    className="text-[80px]/[106px] font-[700] font-[Roboto-Slab]"
+                                    style={{
+                                        background: "linear-gradient(to bottom, #E60036, #80011F)",
+                                        '-webkit-background-clip': 'text',
+                                        '-webkit-text-fill-color': 'transparent',
+                                    }}
+                                >Личная информация</span>
                             </div>
                             <div className="pt-[42px] border-t-[2px] border-[#8B8785] my-[40px]">
                                 <div className="flex gap-x-[40px]">
@@ -171,9 +178,9 @@ const HeroCardPage = () => {
                                     ))}
                                 </div>
                             </div>
-                            <div className="h-[680px]">
+                            <div>
                                 <h2 className="text-[#2B2A29] text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Награды героя</h2>
-                                <div className="grid grid-cols-2 gap-[20px] mt-[40px]">
+                                <div className="grid grid-cols-2 gap-[20px] mt-[40px] pb-[40px]">
                                     {hero.heroAwards.map((item, index) => (
                                         <div key={index} className="w-full flex flex-col p-[40px] bg-[#FFF9E0] rounded-[64px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">{item.title} ● {item.yearAt}</h3>

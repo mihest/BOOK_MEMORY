@@ -7,7 +7,13 @@ const BookPage = () => {
             <div className="bg-[#FDF5DD] w-[2020px] h-full flex flex-col overflow-hidden">
                 <div className="flex flex-col p-[80px] z-99">
                     <span
-                        className="font-[Roboto-Slab] text-[160px]/[100%] font-[900] bg-gradient-to-r from-[#E60036] to-[#80011F] text-transparent bg-clip-text">КНИГА <br/> ПАМЯТИ</span>
+                        className="font-[Roboto-Slab] text-[160px]/[100%] font-[900]"
+                        style={{
+                            background: "linear-gradient(to right, #E60036, #80011F)",
+                            "-webkit-background-clip": 'text',
+                            "-webkit-text-fill-color": 'transparent',
+                        }}
+                    >КНИГА <br/> ПАМЯТИ</span>
                     <span className="font-[Roboto-Slab] text-[32px]/[100%] font-[400] text-black w-[580px] mt-[30px]">— это святая сокровищница, бережно хранящая судьбы тех, чьи имена навечно вписаны золотыми буквами в историю нашей Родины</span>
                 </div>
                 <div className="flex flex-col p-[80px] items-end text-right z-99">

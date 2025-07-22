@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 const HomePage = () => {
 
     return (
-        <div className="bg-[url(/main.jpg)] h-[2160px] w-[3844px]">
+        <div className="bg-[url(/main.jpg)] h-[2160px] w-[3840px]">
             <div className="inset-0 bg-black/60 w-full h-full flex flex-col text-[#FDF6DE] items-center">
                 <div className="flex flex-col items-center mt-[80px] space-y-[64px]">
                     <img src="/main-ico.png" alt="main-ico"/>

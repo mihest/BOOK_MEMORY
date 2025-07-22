@@ -151,7 +151,14 @@ const SearchPage = () => {
                             >
                                 <img src="/arrow-left.svg" alt="arrow_left"/>
                             </button>
-                            <span className="font-[Roboto-Slab] text-[80px]/[100%] font-[700] text-[#80011F] bg-gradient-to-r from-[#E60036] to-[#80011F] bg-clip-text">Результаты поиска</span>
+                            <span
+                                className="font-[Roboto-Slab] text-[80px]/[100%] font-[700] text-[#80011F]"
+                                style={{
+                                    background: "linear-gradient(to bottom, #E60036, #80011F)",
+                                    '-webkit-background-clip': 'text',
+                                    '-webkit-text-fill-color': 'transparent',
+                                }}
+                            >Результаты поиска</span>
                         </div>
                     ) : (
                         <>
@@ -164,7 +171,13 @@ const SearchPage = () => {
                                 </button>
                                 <div className="flex flex-col">
                                     <span
-                                        className="font-[Roboto-Slab] text-[80px]/[100%] font-[700] text-[#80011F] bg-gradient-to-r from-[#E60036] to-[#80011F] bg-clip-text">{text.title}</span>
+                                        className="font-[Roboto-Slab] text-[80px]/[100%] font-[700]"
+                                        style={{
+                                            background: "linear-gradient(to bottom, #E60036, #80011F)",
+                                            '-webkit-background-clip': 'text',
+                                            '-webkit-text-fill-color': 'transparent',
+                                        }}
+                                    >{text.title}</span>
                                     <span
                                         className="font-[Roboto-Slab] text-[40px]/[100%] font-[400] text-black mt-[20px]">{text.description}</span>
                                 </div>
