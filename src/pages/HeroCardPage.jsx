@@ -79,6 +79,7 @@ const HeroCardPage = () => {
 
     const openModal = (index) => {
         setCurrentPhotoIndex(index);
+        console.log(hero.archive[index])
     };
 
     const closeModal = () => {
@@ -190,7 +191,7 @@ const HeroCardPage = () => {
                 <div key={hero.archive[currentPhotoIndex].id} className="absolute inset-0 bg-black/80 flex items-center justify-center z-[1000]">
                     <div className="flex flex-col justify-center items-center gap-[80px]">
                         <img
-                            src={hero.archive[currentPhotoIndex].url}
+                            src={VITE_MEDIA_URL + '/' + hero.archive[currentPhotoIndex].media}
                             alt="archive"
                             className="max-w-[3157px] h-[1776px] object-cover rounded-[16px]"
                         />
