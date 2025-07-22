@@ -1,61 +1,19 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Loader from "../components/Loader.jsx";
+import dayjs from "dayjs";
 
-const mockHero = {
-    full_name: 'Константинопольский Александр Александрович',
-    date_birth: '12.12.1900',
-    date_death: '12.12.2000',
-    place_birth: 'Ижевск',
-    rank: 'Майор',
-    description: 'Мой дедушка, Шевельков Владимир Максимович, с 1911 года проживал в семье рабочего- печатника в городе Санкт-Петербурге.\n' +
-        'С 1929 года началась его военная служба. С 1939 года был переведен на работу Государственной Безопасности. Годвы войны провел в осажденном Ленинграде, где был назначен нач. отдела военной цензуры Ленинградского фронта.\n' +
-        'Награжден орденом «Знак почета», имеет медаль «За оборону Ленинграда», медаль «За боевые заслуги», ордена Красной Звезды, орден «Знак Почета».\n' +
-        'Это был человек, горячо любящий свою Родину, семью, детей и внуков. Человек жив, пока жива о нем память.\n' +
-        'Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!',
-    photo_url: '/hero.png',
-    archive: [
-        { id: 1, url: '/hero.png' },
-        { id: 2, url: '/veteran.jpg' },
-        { id: 3, url: '/tank.png' },
-        { id: 4, url: '/hero.png' },
-        { id: 5, url: '/veteran.jpg' },
-        { id: 6, url: '/hero.png' },
-        { id: 7, url: '/veteran.jpg' },
-        { id: 8, url: '/hero.png' },
-        { id: 9, url: '/veteran.jpg' },
-        { id: 10, url: '/tank.png' },
-        { id: 11, url: '/hero.png' },
-    ],
-    category: "Герой Великой Отечественной войны",
-    rewards: [
-        {
-            title: "Орден мужества",
-            year: 1945,
-            description: "Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!"
-        },
-        {
-            title: "Герой СССР",
-            year: 1946,
-            description: "Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!"
-        },
-        {
-            title: "Герой СССР",
-            year: 1947,
-            description: "Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!"
-        },
-        {
-            title: "Герой СССР",
-            year: 1948,
-            description: "Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!"
-        },
-        {
-            title: "Герой СССР",
-            year: 1949,
-            description: "Я любила деда, это был образец умного, интересного человека. Со своей семьей, каждый год стараемся к 9 мая навести порядок на могилах наших близких. Помним, любим, чтим!"
-        },
-    ]
-};
+const VITE_API_URL = import.meta.env.VITE_API_URL;
+const VITE_IMAGES_URL = import.meta.env.VITE_IMAGES_URL;
+const VITE_MEDIA_URL = import.meta.env.VITE_MEDIA_URL;
+
+const types = {
+    rf: "Герои Советского союза, РФ и полные кавалеры ордена славы",
+    vov: "Герои Великой Отечественной войны",
+    chernobyl: "Авария на Чернобыльской АЭС",
+    local: "Локальные военные конфликты",
+    svo: "Герои СВО"
+}
 
 const HeroCardPage = () => {
     const { id } = useParams();
@@ -69,7 +27,8 @@ const HeroCardPage = () => {
 
     useEffect(() => {
         const fetchHero = async () => {
-            setHero(mockHero);
+            const response = await fetch(`${VITE_API_URL}/people/${id}`);
+            setHero(await response.json());
             setLoading(false);
         };
         fetchHero();
@@ -83,7 +42,6 @@ const HeroCardPage = () => {
                 const canScrollLeft = scrollLeft > 0;
                 setCanScrollRight(canScrollRight);
                 setCanScrollLeft(canScrollLeft);
-                // console.log("scrollLeft:", scrollLeft, "clientWidth:", clientWidth, "scrollWidth:", scrollWidth, "canScrollRight:", canScrollRight, "canScrollLeft:", canScrollLeft);
             }
         };
 
@@ -161,28 +119,30 @@ const HeroCardPage = () => {
                             </div>
                             <div className="pt-[42px] border-t-[2px] border-[#8B8785] my-[40px]">
                                 <div className="flex gap-x-[40px]">
-                                    <img src={hero.photo_url} alt="Hero" className="w-[680px] h-[680px] rounded-[64px]" />
+                                    <img src={VITE_IMAGES_URL + '/' + hero.image} alt="Hero" className="w-[680px] h-[680px] rounded-[64px]" />
                                     <div className="flex flex-col gap-[67px] w-[1380px]">
                                         <div className="flex flex-col gap-[20px]">
-                                            <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{hero.full_name}</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{!hero.date_death ? hero.date_birth : `${hero.date_birth} - ${hero.date_death}`}</span>
+                                            <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{hero.surname + ' ' + hero.name + ' ' + hero.patronymic}</h3>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">
+                                                {!hero.deathDateAt ? dayjs(hero.birthDateAt).format('DD.MM.YYYY') : `${dayjs(hero.birthDateAt).format('DD.MM.YYYY')} - ${dayjs(hero.deathDateAt).format('DD.MM.YYYY')}`}
+                                            </span>
                                         </div>
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Место рождения</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{hero.place_birth}</span>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{hero.city}</span>
                                         </div>
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Воинское звание</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{hero.rank}</span>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{hero.militaryRank.title}</span>
                                         </div>
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Категория героя</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{hero.category}</span>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{types[hero.type]}</span>
                                         </div>
                                     </div>
                                     <div className="w-[1380px] flex flex-col gap-[20px] h-[680px] overflow-auto">
                                         <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Дополнительные сведения</h3>
-                                        <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{hero.description}</span>
+                                        <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{hero.additional}</span>
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +162,7 @@ const HeroCardPage = () => {
                                     {hero.archive.map((item, index) => (
                                         <img
                                             key={index}
-                                            src={item.url}
+                                            src={VITE_MEDIA_URL + '/' + item.media}
                                             alt="material"
                                             className="w-[400px] h-[400px] rounded-[40px] cursor-pointer"
                                             onClick={() => openModal(index)}
@@ -213,9 +173,9 @@ const HeroCardPage = () => {
                             <div className="h-[680px]">
                                 <h2 className="text-[#2B2A29] text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Награды героя</h2>
                                 <div className="grid grid-cols-2 gap-[20px] mt-[40px]">
-                                    {hero.rewards.map((item, index) => (
+                                    {hero.heroAwards.map((item, index) => (
                                         <div key={index} className="w-full flex flex-col p-[40px] bg-[#FFF9E0] rounded-[64px]">
-                                            <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">{item.title} ● {item.year}</h3>
+                                            <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">{item.title} ● {item.yearAt}</h3>
                                             <span className="text-[28px]/[37px] overflow-auto font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{item.description}</span>
                                         </div>
                                     ))}

@@ -4,80 +4,92 @@ import HeroCardComponent from "../components/HeroCardComponent.jsx";
 import KeyboardComponent from "../components/Keyboard.jsx";
 import Loader from "../components/Loader.jsx";
 
+const VITE_API_URL = import.meta.env.VITE_API_URL
+
 const peopleData = [
     {
         id: 1,
-        name: "Константинопольский Александр Александрович",
+        surname: "Константинопольский",
+        name: "Александр",
+        patronymic: "Александрович",
         position: "Маршал Советского Союза",
         city: "Ижевск",
         birthDate: "12.12.1900",
         deathDate: "12.12.2000",
-        imageUrl: "/hero.png"
+        imageUrl: "/uploads/people_images/hero.png"
     },
     {
         id: 2,
-        name: "Константинопольский Александр Александрович",
-        position: "Полковник",
+        surname: "Константинопольский",
+        name: "Александр",
+        patronymic: "Александрович",
+        position: "Маршал Советского Союза",
         city: "Ижевск",
         birthDate: "12.12.1900",
         deathDate: "12.12.2000",
-        imageUrl: "/veteran.jpg"
+        imageUrl: "/uploads/people_images/hero.png"
     },
     {
         id: 3,
-        name: "Константинопольский Александр Александрович",
+        surname: "Константинопольский",
+        name: "Александр",
+        patronymic: "Александрович",
         position: "Маршал Советского Союза",
         city: "Ижевск",
         birthDate: "12.12.1900",
         deathDate: "12.12.2000",
-        imageUrl: "/veteran.jpg"
+        imageUrl: "/uploads/people_images/hero.png"
     },
     {
         id: 4,
-        name: "Константинопольский Александр Александрович",
+        surname: "Константинопольский",
+        name: "Александр",
+        patronymic: "Александрович",
         position: "Маршал Советского Союза",
         city: "Ижевск",
         birthDate: "12.12.1900",
         deathDate: "12.12.2000",
-        imageUrl: "/hero.png"
+        imageUrl: "/uploads/people_images/hero.png"
     },
     {
-        id: 5,
-        name: "Константинопольский Александр Александрович",
+        id: 6,
+        surname: "Константинопольский",
+        name: "Александр",
+        patronymic: "Александрович",
         position: "Маршал Советского Союза",
         city: "Ижевск",
         birthDate: "12.12.1900",
         deathDate: "12.12.2000",
-        imageUrl: "/veteran.jpg"
-    }
+        imageUrl: "/uploads/people_images/hero.png"
+    },
 ];
 
 const texts = {
-    1: {
+    rf: {
         title: "Герои Советского союза, РФ и полные кавалеры ордена славы",
         description: "Истории Герои Советского союза, проявивших мужество и стойкость в годы тяжёлых испытаний."
     },
-    2: {
+    vov: {
         title: "Великая Отечественная война",
         description: "Истории участников Великой Отечественной войны, проявивших мужество и стойкость в годы тяжёлых испытаний."
     },
-    3: {
+    svo: {
         title: "Авария на Чернобыльской АЭС",
         description: "Истории участников Аварии на Чернобыльской АЭС, проявивших мужество и стойкость в годы тяжёлых испытаний."
     },
-    4: {
+    chernobyl: {
         title: "Локальные военные конфликты",
         description: "Истории участников Локальных военных конфликтов, проявивших мужество и стойкость в годы тяжёлых испытаний."
     },
-    5: {
+    local: {
         title: "Герои СВО",
         description: "Истории Героев СВО, проявивших мужество и стойкость в годы тяжёлых испытаний."
     }
 };
 
 const SearchPage = () => {
-    const { id } = useParams();
-    const text = texts[id];
+    const { type } = useParams();
+    const text = texts[type];
 
     const [isOpen, setIsOpen] = useState(false);
     const [searchText, setSearchText] = useState('');
@@ -86,13 +98,18 @@ const SearchPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!texts[type]) {
+            console.log(texts[type], type)
+            navigate("/book");
+        }
+
         const fetchHeroes = async () => {
-            // Запрос на получение героев
-            setHeroes(peopleData);
+            const response = await fetch(`${VITE_API_URL}/people?type=${type}`);
+            setHeroes(await response.json());
             setLoading(false);
         };
         fetchHeroes();
-    }, [id]);
+    }, [type]);
 
     const handleOpenKeyboard = () => {
         setIsOpen(true);
@@ -100,16 +117,27 @@ const SearchPage = () => {
 
     const handleInputChange = (newText) => {
         setSearchText(newText);
-        console.log("Поиск:", newText);
+        const fetchHeroes = async () => {
+            const response = await fetch(`${VITE_API_URL}/people?type=${type}&full_name=${newText}`);
+            setHeroes(await response.json());
+            setLoading(false);
+        };
+        fetchHeroes();
     };
 
     const handleBackClick = () => {
         if (searchText) {
+            setIsOpen(false);
             setSearchText("");
+            handleInputChange("")
         } else {
             navigate("/book");
         }
     };
+
+    if (!text) {
+        return null;
+    }
 
     return (
         <div className="flex-1 flex bg-[#FFF9E0] p-[80px] relative">

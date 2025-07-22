@@ -1,7 +1,7 @@
 const Loader = ({className}) => {
     return (
         <div
-            className={`fixed inset-0 bg-black/80 flex items-center justify-center z-50 ${className}`}
+            className={`fixed inset-0 bg-black/80 flex items-center justify-center z-999 ${className}`}
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"

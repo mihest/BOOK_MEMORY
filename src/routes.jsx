@@ -11,7 +11,7 @@ const AppRoutes = () => {
                 <Route path="/book" element={<BookPage/>}/>
                 <Route path="/" element={<HomePage/>}/>
 
-                <Route path="/search/:id" element={<SearchPage />} />
+                <Route path="/search/:type" element={<SearchPage />} />
                 <Route path="/hero/:id" element={<HeroCardPage/>}/>
 
                 <Route path="*" element={<Navigate to="/" replace/>}/>

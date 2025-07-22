@@ -27,7 +27,7 @@ const BookPage = () => {
                 >
                     <Link
                         key="1"
-                        to="/search/1"
+                        to="/search/rf"
                         className="w-[680px] h-[680px] bg-[#FCEFD6] flex flex-col items-center rounded-[128px] rotate-[-15deg] absolute ml-[1700px] mt-[70px] z-10 border-[4px] border-[#80011F26]"
                         style={{
                             boxShadow: '40px 20px 64px rgba(227, 212, 185, 0.7)'
@@ -47,7 +47,7 @@ const BookPage = () => {
 
                     <Link
                         key="2"
-                        to="/search/2"
+                        to="/search/vov"
                         className="w-[680px] h-[680px] bg-[#FCEFD6] flex flex-col items-center rounded-[128px] rotate-[15deg] absolute ml-[100px] mt-[290px] z-10 border-[4px] border-[#80011F26]"
                         style={{
                             boxShadow: '40px 20px 64px rgba(227, 212, 185, 0.7)'
@@ -67,7 +67,7 @@ const BookPage = () => {
 
                     <Link
                         key="3"
-                        to="/search/3"
+                        to="/search/chernobyl"
                         className="w-[680px] h-[680px] bg-[#FCEFD6] flex flex-col items-center rounded-[128px] rotate-[-15deg] absolute ml-[1000px] mt-[670px] z-10 border-[4px] border-[#80011F26]"
                         style={{
                             boxShadow: '40px 20px 64px rgba(227, 212, 185, 0.7)'
@@ -87,7 +87,7 @@ const BookPage = () => {
 
                     <Link
                         key="4"
-                        to="/search/4"
+                        to="/search/local"
                         className="w-[680px] h-[680px] bg-[#FCEFD6] flex flex-col items-center rounded-[128px] rotate-[15deg] absolute ml-[200px] mt-[1270px] z-10 border-[4px] border-[#80011F26]"
                         style={{
                             boxShadow: '40px 20px 64px rgba(227, 212, 185, 0.7)'
@@ -108,7 +108,7 @@ const BookPage = () => {
 
                     <Link
                         key="5"
-                        to="/search/5"
+                        to="/search/svo"
                         className="w-[680px] h-[680px] bg-[#FCEFD6] flex flex-col items-center rounded-[128px] rotate-[17.4deg] absolute ml-[1700px] mt-[1210px] z-10 border-[4px] border-[#80011F26]"
                         style={{
                             boxShadow: '40px 20px 64px rgba(227, 212, 185, 0.7)'
