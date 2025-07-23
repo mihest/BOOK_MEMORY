@@ -130,7 +130,7 @@ const HeroCardPage = () => {
                                     <img src={VITE_IMAGES_URL + '/' + hero.image} alt="Hero" className="w-[680px] h-[680px] rounded-[64px]" />
                                     <div className="flex flex-col gap-[67px] w-[1380px]">
                                         <div className="flex flex-col gap-[20px]">
-                                            <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{hero.surname + ' ' + hero.name + ' ' + hero.patronymic}</h3>
+                                            <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{hero.patronymic ? hero.surname + ' ' + hero.name + ' ' + hero.patronymic : hero.surname + ' ' + hero.name}</h3>
                                             <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">
                                                 {!hero.deathDateAt ? dayjs(hero.birthDateAt).format('DD.MM.YYYY') : `${dayjs(hero.birthDateAt).format('DD.MM.YYYY')} - ${dayjs(hero.deathDateAt).format('DD.MM.YYYY')}`}
                                             </span>
@@ -167,27 +167,40 @@ const HeroCardPage = () => {
                                     </div>
                                 </div>
                                 <div ref={archiveRef} className="flex overflow-auto py-[20px] gap-[20px]">
-                                    {hero.archive.map((item, index) => (
-                                        <img
-                                            key={index}
-                                            src={VITE_MEDIA_URL + '/' + item.media}
-                                            alt="material"
-                                            className="w-[400px] h-[400px] rounded-[40px] cursor-pointer"
-                                            onClick={() => openModal(index)}
-                                        />
-                                    ))}
+                                    {hero.archive.length ?
+                                        hero.archive.map((item, index) => (
+                                            <img
+                                                key={index}
+                                                src={VITE_MEDIA_URL + '/' + item.media}
+                                                alt="material"
+                                                className="w-[400px] h-[400px] rounded-[40px] cursor-pointer"
+                                                onClick={() => openModal(index)}
+                                            />
+                                        )) : (
+                                            <div className="w-full mx-auto text-center text-center text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Нет данных</div>                                            
+                                        )
+                                    }
                                 </div>
                             </div>
                             <div>
                                 <h2 className="text-[#2B2A29] text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Награды героя</h2>
-                                <div className="grid grid-cols-2 gap-[20px] mt-[40px] pb-[40px]">
-                                    {hero.heroAwards.map((item, index) => (
-                                        <div key={index} className="w-full flex flex-col p-[40px] bg-[#FFF9E0] rounded-[64px]">
-                                            <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">{item.title} ● {item.yearAt}</h3>
-                                            <span className="text-[28px]/[37px] overflow-auto font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{item.description}</span>
+                                {hero.heroAwards.length ? (
+                                    
+                                        <div className="grid grid-cols-2 gap-[20px] mt-[40px] pb-[40px]">
+                                            <div className="grid grid-cols-2 gap-[20px] mt-[40px] pb-[40px]">
+                                                {hero.heroAwards.map((item, index) => (
+                                                    <div key={index} className="w-full flex flex-col p-[40px] bg-[#FFF9E0] rounded-[64px]">
+                                                        <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">{item.title} ● {item.yearAt}</h3>
+                                                        <span className="text-[28px]/[37px] overflow-auto font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{item.description}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            
                                         </div>
-                                    ))}
-                                </div>
+                                    ) : (
+                                        <div className="w-full mx-auto text-center text-center text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Нет наград</div>
+                                    )
+                                }
                             </div>
                         </>
                     )}
