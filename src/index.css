@@ -1,16 +1,21 @@
 @import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+}
+
 body{
+    user-select: none;
+}
+
+.cont {
     width: 3840px;
     height: 2160px;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
 }
 
 #root {
     display: flex;
     flex-direction: column;
-    flex: 1;
 }
 
 @font-face {

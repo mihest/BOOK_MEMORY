@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 const BookPage = () => {
 
     return (
-        <div className="flex-1 flex">
+        <div className="cont flex">
             <div className="bg-[#FDF5DD] w-[2020px] h-full flex flex-col overflow-hidden">
                 <div className="flex flex-col p-[80px] z-99">
                     <span

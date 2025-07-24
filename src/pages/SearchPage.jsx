@@ -6,64 +6,6 @@ import Loader from "../components/Loader.jsx";
 
 const VITE_API_URL = import.meta.env.VITE_API_URL
 
-const peopleData = [
-    {
-        id: 1,
-        surname: "Константинопольский",
-        name: "Александр",
-        patronymic: "Александрович",
-        position: "Маршал Советского Союза",
-        city: "Ижевск",
-        birthDate: "12.12.1900",
-        deathDate: "12.12.2000",
-        imageUrl: "/uploads/people_images/hero.png"
-    },
-    {
-        id: 2,
-        surname: "Константинопольский",
-        name: "Александр",
-        patronymic: "Александрович",
-        position: "Маршал Советского Союза",
-        city: "Ижевск",
-        birthDate: "12.12.1900",
-        deathDate: "12.12.2000",
-        imageUrl: "/uploads/people_images/hero.png"
-    },
-    {
-        id: 3,
-        surname: "Константинопольский",
-        name: "Александр",
-        patronymic: "Александрович",
-        position: "Маршал Советского Союза",
-        city: "Ижевск",
-        birthDate: "12.12.1900",
-        deathDate: "12.12.2000",
-        imageUrl: "/uploads/people_images/hero.png"
-    },
-    {
-        id: 4,
-        surname: "Константинопольский",
-        name: "Александр",
-        patronymic: "Александрович",
-        position: "Маршал Советского Союза",
-        city: "Ижевск",
-        birthDate: "12.12.1900",
-        deathDate: "12.12.2000",
-        imageUrl: "/uploads/people_images/hero.png"
-    },
-    {
-        id: 6,
-        surname: "Константинопольский",
-        name: "Александр",
-        patronymic: "Александрович",
-        position: "Маршал Советского Союза",
-        city: "Ижевск",
-        birthDate: "12.12.1900",
-        deathDate: "12.12.2000",
-        imageUrl: "/uploads/people_images/hero.png"
-    },
-];
-
 const texts = {
     rf: {
         title: "Герои Советского союза, РФ и полные кавалеры ордена славы",
@@ -73,15 +15,15 @@ const texts = {
         title: "Великая Отечественная война",
         description: "Истории участников Великой Отечественной войны, проявивших мужество и стойкость в годы тяжёлых испытаний."
     },
-    svo: {
+    chernobyl: {
         title: "Авария на Чернобыльской АЭС",
         description: "Истории участников Аварии на Чернобыльской АЭС, проявивших мужество и стойкость в годы тяжёлых испытаний."
     },
-    chernobyl: {
+    local: {
         title: "Локальные военные конфликты",
         description: "Истории участников Локальных военных конфликтов, проявивших мужество и стойкость в годы тяжёлых испытаний."
     },
-    local: {
+    svo: {
         title: "Герои СВО",
         description: "Истории Героев СВО, проявивших мужество и стойкость в годы тяжёлых испытаний."
     }
@@ -140,7 +82,7 @@ const SearchPage = () => {
     }
 
     return (
-        <div className="flex-1 flex bg-[#FFF9E0] p-[80px] relative">
+        <div className="cont flex bg-[#FFF9E0] p-[80px] relative">
             <div className="bg-[#FCEFD6] w-full h-full flex flex-col overflow-hidden rounded-[128px] py-[80px] relative">
                 <div className="flex items-center justify-between px-[80px]">
                     {searchText || isOpen ? (
@@ -194,14 +136,14 @@ const SearchPage = () => {
                 </div>
                 {loading ? <Loader /> : (
                     <div className="flex flex-col w-full h-[1746px] overflow-y-auto overflow-x-hidden px-[80px] mt-[30px]">
-                        <div className="grid w-full grid-cols-4 gap-[20px]">
+                        <div className="grid w-full grid-cols-4 gap-[20px] mb-[80px]">
                             {heroes.map((hero) => (
                                 <HeroCardComponent key={hero.id} hero={hero} />
                             ))}
                         </div>
                     </div>
                 )}
-                <div className="absolute bottom-[80px] left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#FCEFD6] pointer-events-none z-[10]" />
+                <div className="absolute bottom-[80px] left-0 right-0 h-[80px] bg-gradient-to-b from-transparent to-[#FCEFD6] pointer-events-none z-[10]" />
             </div>
             {isOpen && (
                 <KeyboardComponent
