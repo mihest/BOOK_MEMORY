@@ -130,27 +130,27 @@ const HeroCardPage = () => {
                                     <img src={VITE_IMAGES_URL + '/' + hero.image} alt="Hero" className="w-[680px] h-[680px] rounded-[64px]" />
                                     <div className="flex flex-col gap-[67px] w-[1380px]">
                                         <div className="flex flex-col gap-[20px]">
-                                            <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{hero.patronymic ? hero.surname + ' ' + hero.name + ' ' + hero.patronymic : hero.surname + ' ' + hero.name}</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">
+                                            <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-all">{hero.patronymic ? hero.surname + ' ' + hero.name + ' ' + hero.patronymic : hero.surname + ' ' + hero.name}</h3>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-all">
                                                 {!hero.deathDateAt ? dayjs(hero.birthDateAt).format('DD.MM.YYYY') : `${dayjs(hero.birthDateAt).format('DD.MM.YYYY')} - ${dayjs(hero.deathDateAt).format('DD.MM.YYYY')}`}
                                             </span>
                                         </div>
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Место рождения</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{hero.city}</span>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-all">{hero.city}</span>
                                         </div>
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Воинское звание</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{hero.militaryRank.title}</span>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-all">{hero.militaryRank.title}</span>
                                         </div>
                                         <div className="flex flex-col gap-[20px]">
                                             <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Категория героя</h3>
-                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal">{types[hero.type]}</span>
+                                            <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-all">{types[hero.type]}</span>
                                         </div>
                                     </div>
                                     <div className="w-[1380px] flex flex-col gap-[20px] h-[680px] overflow-auto">
                                         <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Дополнительные сведения</h3>
-                                        <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{hero.additional}</span>
+                                        <span className="text-[28px]/[37px] font-[400] font-[Roboto-Slab] text-[#464444] break-all whitespace-pre-line">{hero.additional}</span>
                                     </div>
                                 </div>
                             </div>
@@ -187,15 +187,12 @@ const HeroCardPage = () => {
                                 {hero.heroAwards.length ? (
                                     
                                         <div className="grid grid-cols-2 gap-[20px] mt-[40px] pb-[40px]">
-                                            <div className="grid grid-cols-2 gap-[20px] mt-[40px] pb-[40px]">
                                                 {hero.heroAwards.map((item, index) => (
                                                     <div key={index} className="w-full flex flex-col p-[40px] bg-[#FFF9E0] rounded-[64px]">
-                                                        <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab]">{item.title} ● {item.yearAt}</h3>
-                                                        <span className="text-[28px]/[37px] overflow-auto font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{item.description}</span>
+                                                        <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-all">{item.title} ● {item.yearAt}</h3>
+                                                        <span className="text-[28px]/[37px] overflow-auto font-[400] font-[Roboto-Slab] text-[#464444] break-all whitespace-pre-line">{item.description}</span>
                                                     </div>
-                                                ))}
-                                            </div>
-                                            
+                                                ))}                                            
                                         </div>
                                     ) : (
                                         <div className="w-full mx-auto text-center text-center text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Нет наград</div>
