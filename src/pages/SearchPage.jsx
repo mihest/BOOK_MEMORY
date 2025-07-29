@@ -4,7 +4,7 @@ import HeroCardComponent from "../components/HeroCardComponent.jsx";
 import KeyboardComponent from "../components/Keyboard.jsx";
 import Loader from "../components/Loader.jsx";
 
-const VITE_API_URL = import.meta.env.VITE_API_URL
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 const texts = {
     rf: {
@@ -37,21 +37,36 @@ const SearchPage = () => {
     const [searchText, setSearchText] = useState('');
     const [heroes, setHeroes] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const itemsPerPage = 8;
     const navigate = useNavigate();
 
     useEffect(() => {
         if (!texts[type]) {
-            console.log(texts[type], type)
             navigate("/book");
         }
 
         const fetchHeroes = async () => {
-            const response = await fetch(`${VITE_API_URL}/people?type=${type}`);
-            setHeroes(await response.json());
+            setLoading(true);
+            const query = new URLSearchParams({
+                type,
+                page: currentPage,
+                ...(searchText && { full_name: searchText })
+            }).toString();
+            const response = await fetch(`${VITE_API_URL}/people?${query}`, {
+                headers: {
+                    Accept: "application/ld+json",
+                }
+            });
+            const data = await response.json();
+            setHeroes(data['member'] || []);
+            const totalItems = data['totalItems'] || 0;
+            setTotalPages(Math.ceil(totalItems / itemsPerPage));
             setLoading(false);
         };
         fetchHeroes();
-    }, [type]);
+    }, [type, currentPage, searchText]);
 
     const handleOpenKeyboard = () => {
         setIsOpen(true);
@@ -59,21 +74,23 @@ const SearchPage = () => {
 
     const handleInputChange = (newText) => {
         setSearchText(newText);
-        const fetchHeroes = async () => {
-            const response = await fetch(`${VITE_API_URL}/people?type=${type}&full_name=${newText}`);
-            setHeroes(await response.json());
-            setLoading(false);
-        };
-        fetchHeroes();
+        setCurrentPage(1);
     };
 
     const handleBackClick = () => {
-        if (searchText) {
+        if (searchText || isOpen) {
             setIsOpen(false);
             setSearchText("");
-            handleInputChange("")
+            setCurrentPage(1);
         } else {
             navigate("/book");
+        }
+    };
+
+    const handlePageChange = (newPage) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setCurrentPage(newPage);
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокрутка вверх при смене страницы
         }
     };
 
@@ -96,9 +113,9 @@ const SearchPage = () => {
                             <span
                                 className="font-[Roboto-Slab] text-[80px]/[100%] font-[700] text-[#80011F]"
                                 style={{
-                                    background: "linear-gradient(to bottom, #E60036, #80011F)",
-                                    '-webkit-background-clip': 'text',
-                                    '-webkit-text-fill-color': 'transparent',
+                                    background: "linear-gradient(0.00deg, rgb(128, 1, 31),rgb(230, 0, 54))",
+                                    webkitBackgroundClip: 'text',
+                                    webkitTextFillColor: 'transparent',
                                 }}
                             >Результаты поиска</span>
                         </div>
@@ -113,15 +130,15 @@ const SearchPage = () => {
                                 </button>
                                 <div className="flex flex-col">
                                     <span
-                                        className="font-[Roboto-Slab] text-[80px]/[100%] font-[700]"
+                                        className="font-[Roboto-Slab] text-[80px]/[106px] font-[700]"
                                         style={{
-                                            background: "linear-gradient(to bottom, #E60036, #80011F)",
-                                            '-webkit-background-clip': 'text',
-                                            '-webkit-text-fill-color': 'transparent',
+                                            background: "linear-gradient(0.00deg, rgb(128, 1, 31),rgb(230, 0, 54))",
+                                            webkitBackgroundClip: 'text',
+                                            webkitTextFillColor: 'transparent',
                                         }}
                                     >{text.title}</span>
                                     <span
-                                        className="font-[Roboto-Slab] text-[40px]/[100%] font-[400] text-black mt-[20px]">{text.description}</span>
+                                        className="font-[Roboto-Slab] text-[40px]/[53px] font-[400] text-[#464444]">{text.description}</span>
                                 </div>
                             </div>
 
@@ -136,11 +153,32 @@ const SearchPage = () => {
                 </div>
                 {loading ? <Loader /> : (
                     <div className="flex flex-col w-full h-[1746px] overflow-y-auto overflow-x-hidden px-[80px] mt-[30px]">
-                        <div className="grid w-full grid-cols-4 gap-[20px] mb-[80px]">
+                        <div className="grid w-full grid-cols-4 gap-[20px] mb-[40px]">
                             {heroes.map((hero) => (
                                 <HeroCardComponent key={hero.id} hero={hero} />
                             ))}
                         </div>
+                        {totalPages > 1 && (
+                            <div className="flex justify-center items-center gap-[20px] mt-[20px] mb-[60px]">
+                                <button
+                                    className={`bg-[#80011F] rounded-[48px] w-[120px] h-[120px] flex items-center justify-center cursor-pointer ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    onClick={() => handlePageChange(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                >
+                                    <img src="/arrow-left.svg" alt="prev_page" />
+                                </button>
+                                <span className="font-[Roboto-Slab] text-[48px] font-[700] text-[#80011F]">
+                                    {currentPage} / {totalPages}
+                                </span>
+                                <button
+                                    className={`bg-[#80011F] rounded-[48px] w-[120px] h-[120px] rotate-180 flex items-center justify-center cursor-pointer ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={currentPage === totalPages}
+                                >
+                                    <img src="/arrow-left.svg" alt="next_page" />
+                                </button>
+                            </div>
+                        )}
                     </div>
                 )}
                 <div className="absolute bottom-[80px] left-0 right-0 h-[80px] bg-gradient-to-b from-transparent to-[#FCEFD6] pointer-events-none z-[10]" />
