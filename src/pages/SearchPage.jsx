@@ -167,8 +167,8 @@ const SearchPage = () => {
                                 className="font-[Roboto-Slab] text-[80px]/[100%] font-[700] text-[#80011F]"
                                 style={{
                                     background: "linear-gradient(0.00deg, rgb(128, 1, 31),rgb(230, 0, 54))",
-                                    webkitBackgroundClip: 'text',
-                                    webkitTextFillColor: 'transparent',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
                                 }}
                             >Результаты поиска</span>
                         </div>
@@ -186,8 +186,8 @@ const SearchPage = () => {
                                         className="font-[Roboto-Slab] text-[80px]/[106px] font-[700]"
                                         style={{
                                             background: "linear-gradient(0.00deg, rgb(128, 1, 31),rgb(230, 0, 54))",
-                                            webkitBackgroundClip: 'text',
-                                            webkitTextFillColor: 'transparent',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
                                         }}
                                     >{text.title}</span>
                                     <span

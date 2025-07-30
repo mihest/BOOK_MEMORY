@@ -120,8 +120,8 @@ const HeroCardPage = () => {
                                     className="text-[80px]/[106px] font-[700] font-[Roboto-Slab]"
                                     style={{
                                         background: "linear-gradient(to bottom, #E60036, #80011F)",
-                                        '-webkit-background-clip': 'text',
-                                        '-webkit-text-fill-color': 'transparent',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
                                     }}
                                 >Личная информация</span>
                             </div>
