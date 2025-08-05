@@ -80,10 +80,12 @@ const HeroCardPage = () => {
     const openModal = (index) => {
         setCurrentPhotoIndex(index);
         console.log(hero.archive[index])
+        document.body.classList.add("no-scroll");
     };
 
     const closeModal = () => {
         setCurrentPhotoIndex(null);
+        document.body.classList.remove("no-scroll");
     };
 
     const goToPrevious = () => {
@@ -177,7 +179,7 @@ const HeroCardPage = () => {
                                                 onClick={() => openModal(index)}
                                             />
                                         )) : (
-                                            <div className="w-full mx-auto text-center text-center text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Нет данных</div>                                            
+                                            <div className="w-full mx-auto text-center text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Нет данных</div>
                                         )
                                     }
                                 </div>
@@ -185,17 +187,17 @@ const HeroCardPage = () => {
                             <div>
                                 <h2 className="text-[#2B2A29] text-[80px]/[106px] font-[700] font-[Roboto-Slab]">Награды героя</h2>
                                 {hero.heroAwards.length ? (
-                                    
+
                                         <div className="grid grid-cols-2 gap-[20px] mt-[40px] pb-[40px]">
                                                 {hero.heroAwards.map((item, index) => (
                                                     <div key={index} className="w-full flex flex-col p-[40px] bg-[#FFF9E0] rounded-[64px]">
                                                         <h3 className="text-[#2B2A29] text-[48px]/[63px] font-[700] font-[Roboto-Slab] break-normal">{item.title} ● {item.yearAt}</h3>
                                                         <span className="text-[28px]/[37px] overflow-auto font-[400] font-[Roboto-Slab] text-[#464444] break-normal whitespace-pre-line">{item.description}</span>
                                                     </div>
-                                                ))}                                            
+                                                ))}
                                         </div>
                                     ) : (
-                                        <div className="w-full mx-auto text-center text-center text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Нет наград</div>
+                                        <div className="w-full mx-auto text-center text-[48px]/[63px] font-[700] font-[Roboto-Slab]">Нет наград</div>
                                     )
                                 }
                             </div>
@@ -205,9 +207,9 @@ const HeroCardPage = () => {
                 <div className="absolute bottom-[80px] left-0 right-0 h-[80px] bg-gradient-to-b from-transparent to-[#FCEFD6] pointer-events-none z-99" />
             </div>
             {currentPhotoIndex !== null && (
-                <div key={hero.archive[currentPhotoIndex].id} className="absolute inset-0 bg-black/80 flex items-center justify-center z-[1000]">
-                    <div className="flex flex-col justify-center items-center gap-[80px]">
-                        <div className="flex mb-[160px]">
+                <div key={hero.archive[currentPhotoIndex].id} className="absolute inset-0 -bottom-[1px] bg-black/80 flex items-center justify-center z-[1000] overflow-auto">
+                    <div className="flex flex-col items-center gap-[80px]">
+                        <div className="flex mt-[211px]">
                             <button
                                 onClick={goToPrevious}
                                 className="absolute left-[398px] top-1/2 transform -translate-y-[calc(50%+80px)] w-[64px] h-[64px]"
@@ -226,9 +228,13 @@ const HeroCardPage = () => {
                                 <img src="/arrowWhite.svg" alt="Next" className="w-[64px] h-[64px] rotate-180" />
                             </button>
                         </div>
+                        <div className="bg-[#FFF9E0] w-[3121px] py-[84px] px-[105px] rounded-[48px] mb-[80px]">
+                            <h3 className="font-[RobotoSlab] text-[#2B2A29] text-[48px]/[63px] font-[700] break-normal">{hero.archive[currentPhotoIndex].title}</h3>
+                            <span className="font-[RobotoSlab] text-[#464444] text-[28px]/[37px] font-[400] break-normal whitespace-pre-line">{hero.archive[currentPhotoIndex].description ? hero.archive[currentPhotoIndex].description : "Нет доп.сведений"}</span>
+                        </div>
                         <button
                             onClick={closeModal}
-                            className="absolute bottom-[80px] w-[330px] h-[144px] bg-[#80011F] rounded-[48px] flex items-center justify-center"
+                            className="absolute top-[111px] right-[158px] w-[144px] h-[144px] bg-[#80011F] rounded-[48px] flex items-center justify-center"
                         >
                             <img src="/closeWhite.svg" alt="close" className="w-[64px] h-[64px]" />
                         </button>

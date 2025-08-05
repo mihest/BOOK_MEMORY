@@ -59,3 +59,7 @@ body{
     scrollbar-width: auto;
     scrollbar-color: #E8DBC2 transparent;
 }
+
+.no-scroll {
+    overflow: hidden;
+}
